@@ -1,0 +1,42 @@
+.hero{
+    background-image: url('/assets/images/home.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw; 
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    
+}
+
+
+
+.content{
+    color: white;
+    width: 30%;
+}
+
+.content h1{
+    font-size: 4rem;
+    line-height: 4rem;
+
+}
+.content p{
+    margin: 1rem 0;
+}
+
+button{
+    padding: .6rem 2rem;
+   
+    border: none;
+    color: white;
+    background-color: #153bfd;
+}
+
+
+
+
+  
+  

@@ -1,0 +1,2 @@
+export enum TounamentMode {
+}

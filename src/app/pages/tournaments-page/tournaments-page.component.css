@@ -1,0 +1,38 @@
+.container{
+  
+    
+}
+
+.hero {
+    position: relative;
+    background-image: url("/assets/images/tournament-page.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(4px); 
+    z-index: 1; 
+}
+
+
+.hero h1 {
+    color: white;
+    font-size: 5rem;
+    position: relative;
+    z-index: 2; 
+}

@@ -1,0 +1,48 @@
+.container{
+   
+    background-color: #121213;
+
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.image{
+    background-image: url("/assets/images/tournament.jpg") ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 20rem;
+
+}
+
+.data{
+    margin: 2rem 1rem;
+}
+.data h1{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    
+}
+.data p {
+    font-size: 0.8rem;
+}
+
+button{
+    border: none;
+    background-color: #070707;
+    color: white;
+    padding: .6rem 2rem;
+    
+}
+
+.proprity button{
+    margin: 1rem 1rem 2rem 0;
+}
+.image button{
+    margin: 1rem 2rem;
+    opacity: 0.8;
+}
+.format{
+    color: #FFD700;
+}
+

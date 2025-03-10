@@ -1,0 +1,19 @@
+.container{
+background-color: #232023;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 3rem;
+}
+
+.tournaments{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 80%;
+    margin: auto;
+    gap: 1rem;
+}
+

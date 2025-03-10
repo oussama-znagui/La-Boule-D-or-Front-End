@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="title">
+        <h1>
+            Championnat National de Billard 2023
+        </h1>
+      <div class="title-data">
+        <div>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
+              </svg>
+        <p>
+            15 novembre 2023 à 09h00
+        </p>              
+        </div>
+        <div>
+            <svg  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 14v7M5 4.971v9.541c5.6-5.538 8.4 2.64 14-.086v-9.54C13.4 7.61 10.6-.568 5 4.97Z"/>
+              </svg>
+
+        <p>
+            NATIONAL
+        </p>              
+        </div>
+        <div>
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13v-2a1 1 0 0 0-1-1h-.757l-.707-1.707.535-.536a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 0l-.536.535L14 4.757V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.757l-1.707.707-.536-.535a1 1 0 0 0-1.414 0L4.929 6.343a1 1 0 0 0 0 1.414l.536.536L4.757 10H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.757l.707 1.707-.535.536a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414 0l.536-.535 1.707.707V20a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.757l1.707-.708.536.536a1 1 0 0 0 1.414 0l1.414-1.414a1 1 0 0 0 0-1.414l-.535-.536.707-1.707H20a1 1 0 0 0 1-1Z"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+              </svg>
+              
+        <p>
+            Élimination directe
+        </p>              
+        </div>
+      </div>
+    </div>
+    <div class="image">
+
+    </div>
+    <div class="global-data">
+        <div class="filter">
+            <button (click)="setActiveTab('details')" [class.active]="activeTab === 'details'" >Détails</button>
+            <button (click)="setActiveTab('joueurs')" [class.active]="activeTab === 'joueurs'">Joueurs</button>
+            <button (click)="setActiveTab('equipes')" [class.active]="activeTab === 'equipes'">Équipes</button>
+            <button (click)="setActiveTab('arbitres')" [class.active]="activeTab === 'arbitres'">Arbitres</button>
+            <button (click)="setActiveTab('matches')" [class.active]="activeTab === 'matches'">Matchs</button>
+        </div>
+        <div class="data">
+            @switch (activeTab) {
+                @case ("details") {
+                    <app-tournament-details />
+                }
+                @case ("joueurs") {
+                    <app-players-list />
+                }
+                @case ("equipes") {
+                    
+                }
+                @case ("arbitres") {
+                    
+                }
+                @case ("matches") {
+                    
+                }
+            }
+
+
+
+        </div>
+    </div>
+</div>
