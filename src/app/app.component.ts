@@ -17,5 +17,7 @@ export class AppComponent {
   title = 'frontEnd';
   constructor(private store: Store) {
     this.store.dispatch(loadIndividualTournaments());
+    console.log("bonjour");
+    
   }
 }
