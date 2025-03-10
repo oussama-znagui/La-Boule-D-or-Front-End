@@ -1,25 +1,80 @@
 import { createReducer, on } from "@ngrx/store";
 import { Tournament } from "../../models/tournament";
-import { loadTournaments, loadTournamentsFailure, loadTournamentsSucces } from "./tournament.actions";
+import {loadIndividualTournamentsFailure,loadIndividualTournamentsSuccess,clearTournamentFilter,setTournamentFilter, loadClubsTournamentsFailure, loadClubsTournamentsSuccess, loadClubsTournaments, loadIndividualTournaments, } from "./tournament.actions";
+import { IndividualTournament } from "../../models/individual-tournament";
+import { ClubsTournament } from "../../models/clubs-tournament";
+import { TournamentFilter } from "../../models/tournament-filter";
 
 
-export interface TournamentState{
-    tournaments: Tournament[],
-    loading: boolean;
-    error: string | null;
-    
+export interface TournamentState {
+  individualTournaments: IndividualTournament[];
+  clubsTournaments: ClubsTournament[];
+  filter: TournamentFilter;
+  loading: boolean;
+  error: any;
 }
 
-const initialState: TournamentState = {
-    tournaments: [],
-    loading: false,
+export const initialTournamentState: TournamentState = {
+  individualTournaments: [],
+  clubsTournaments: [],
+  filter: {},
+  loading: false,
+  error: null
+};
+
+export const tournamentReducer = createReducer(
+  initialTournamentState,
+  
+ 
+  on(loadIndividualTournaments, state => ({
+    ...state,
+    loading: true,
     error: null
-  };
-
-  export const tournamentsReducer = createReducer(
-    initialState,
-    on(loadTournaments, (state) => ({...state, loading: true})),
-    on(loadTournamentsSucces, (state, {tournaments}) => ({ ...state, loading: false, tournaments })),
-    on(loadTournamentsFailure, (state, { error }) => ({ ...state, loading: false, error }))
-
-  );
+  })),
+  
+  on(loadIndividualTournamentsSuccess, (state, { tournaments }) => ({
+    ...state,
+    individualTournaments: tournaments,
+    loading: false
+  })),
+  
+  on(loadIndividualTournamentsFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false
+  })),
+  
+ 
+  on(loadClubsTournaments, state => ({
+    ...state,
+    loading: true,
+    error: null
+  })),
+  
+  on(loadClubsTournamentsSuccess, (state, { tournaments }) => ({
+    ...state,
+    clubsTournaments: tournaments,
+    loading: false
+  })),
+  
+  on(loadClubsTournamentsFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false
+  })),
+  
+  // Filters
+  on(setTournamentFilter, (state, { filter }) => ({
+    ...state,
+    filter: {
+      ...state.filter,
+      ...filter
+    }
+  })),
+  
+  on(clearTournamentFilter, state => ({
+    ...state,
+    filter: {}
+  }))
+  
+);
