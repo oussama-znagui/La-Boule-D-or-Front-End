@@ -1,0 +1,202 @@
+<div class="page">
+    <div class="hero">
+        <h1>Creer un Tournoi</h1>
+    </div>
+    <div class="add">
+        <div class="type">
+            <button  [ngClass]="type == 'individuel' ? 'active' : ''"  (click)="setType('individuel')">
+                <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="8" r="4" fill="currentColor"/>
+                    <path d="M4 20v-2a6 6 0 0 1 12 0v2H4Z" fill="currentColor"/>
+                  </svg>
+                  
+                Tournoi Individuel
+            </button>
+            <button [class.active]="type == 'clubs'" (click)="setType('clubs')">
+                <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="9" cy="7" r="3" fill="currentColor"/>
+                    <circle cx="17" cy="7" r="3" fill="currentColor"/>
+                    <path d="M3 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2H3Zm10 0v-2a6 6 0 0 1 6-6h2v8h-8Z" fill="currentColor"/>
+                  </svg>
+                  
+                  
+                Tournoi Des Clubs
+            </button>
+        </div>
+        <form>
+            <h1>Informations Générales</h1>
+            <div class="group1">
+                <div class="field">
+                    <label for="">Titre du tournoi</label>
+                    <input type="text" id="title">
+                </div>
+                <div class="field">
+                    <label for="">Type du tournoi</label>
+                    <select name="" id="type" (change)="changeTournamentType($event)">
+                        <option value="NATIONAL">NATIONAL</option>
+                        <option value="REGIONAL">REGIONAL</option>
+                        <option value="CITY_LEVEL">CITY_LEVEL</option>
+                        <option value="CLUB_LEVEL">CLUB_LEVEL</option>
+                    </select>
+                </div>
+            
+               @if (tournamentType != "NATIONAL") {
+                <div class="field">
+                    <label for="">
+                        @if (tournamentType == "REGIONAL") {
+                            Region
+                        }
+                        @if (tournamentType == "CITY_LEVEL") {
+                            Ville
+                        }
+                        @if (tournamentType == "CLUB_LEVEL") {
+                            Club
+                        }
+                    </label>
+                    <select name="" id="type">
+                   
+                        @if (tournamentType == "REGIONAL") {
+                            @for (region of regions; track $index) {
+                                <option value="{{region}}">{{region}}</option>
+                            }
+                        }
+                        @if (tournamentType == "CITY_LEVEL") {
+                            @for (city of cities | async; track city.id) {
+                                <option value="{{city.name}}">{{city.name}}</option>
+                            }
+                        }
+                        @if (tournamentType == "CLUB_LEVEL") {
+                            @for (club of clubs | async; track club.id) {
+                                <option value="{{club.name}}">{{club.name}}</option>
+                            }
+                        }
+                    </select>
+                </div>
+               }
+               
+               
+
+                <div class="field">
+                    <label for="">Mode</label>
+                    <select name="" id="mode">
+                        <option value="A5_A7_A9">A5_A7_A9</option>
+                        <option value="A5_A5_A7">A5_A5_A7</option>
+                        <option value="A3_A5_A7">A3_A5_A7</option>
+                        <option value="A5_A7_A11">A5_A7_A11</option>
+                        <option value="A4_A6_A8">A4_A6_A8</option>
+                        <option value="A6_A7_A9">A6_A7_A9</option>
+                        <option value=" A5_A6_A10"> A5_A6_A10</option>
+                        <option value="A4_A5_A9">A4_A5_A9</option>
+                        <option value="A11_A13_A15">A11_A13_A15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="group2">
+                <div class="field">
+                    <label for="">Date de Debut</label>
+                    <input type="date" id="startDate">
+                </div>
+                <div class="field">
+                    <label for="">Date de Fin</label>
+                    <input type="date" id="endDate">
+                </div>
+                <div class="field">
+                    <label for="">Format</label>
+                    <select name="" id="format">
+                        <option value="POINT_BASED">Poins</option>
+                        <option value="KNOCKOUT">Qualification</option>
+                    </select>
+                </div> 
+                <div class="field">
+                    <label for="">Niveau</label>
+                    <select name="" id="format">
+                        <option value="INTERMEDIATE">INTERMEDIATE</option>
+                        <option value="BEGINNER">BEGINNER</option>
+                        <option value="ADVANCED">ADVANCED</option>
+                        <option value="ALL">ALL</option>
+                    </select>
+                </div> 
+            </div>
+            <div class="group3">
+                <div class="field">
+                    <textarea name="prize" id="" placeholder="Prix et honneurs"></textarea>
+                </div>
+                <div class="field">
+                    <textarea name="rules" id="" placeholder="Règles générales"></textarea>
+                </div>
+                <div class="field">
+                   
+                </div>
+            </div>
+            @if (type == 'clubs') {
+                <div class="teams">
+                    <div class="teams-hero">
+                     <h1>Clubs</h1>
+                    <div class="noc">
+                        <form action="" >
+                            <input type="number" placeholder="Nombre de Clubs">
+                         </form>
+    
+                    </div>
+                  
+                     
+     
+                     <div class="teams-actions">
+                         <button type="button">Automatique</button>
+                         <button type="button">Manuel</button>
+                     </div>
+     
+                     <button type="button" class="add-team">
+                         Ajouter Club
+                     </button>
+                  
+                    </div>
+                    <div class="display-teams">
+                     @for (item of [1,2,3,4,5,6]; track $index) {
+                         <app-dashboard-player-card />
+                     }
+     
+                         
+                    </div>
+                    
+     
+                 </div>
+    
+    
+            }
+            <div class="players">
+               <div class="players-hero">
+                <h1>Joueurs</h1>
+                <div class="noc">
+                    <form action="" >
+                        <input type="number" placeholder="Nombre de Joueurs">
+                     </form>
+
+                </div>
+
+                <div class="players-actions">
+                    <button type="button">Automatique</button>
+                    <button type="button">Manuel</button>
+                </div>
+
+                <button type="button" class="add-player">
+                    Ajouter Joueur
+                </button>
+             
+               </div>
+               <div class="display-players">
+                @for (item of [1,2,3,4,5,6]; track $index) {
+                    <app-dashboard-player-card />
+                }
+
+                    
+               </div>
+               
+
+            </div>
+
+
+         
+        </form>
+    </div>
+</div>

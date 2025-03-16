@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
       <h2>Joueurs inscrits</h2>
-      <p class="subtitle">Liste des 10 joueurs participant au tournoi</p>
+      <p class="subtitle">Liste des {{players.length}} joueurs participant au tournoi</p>
     </div>
     <div class="card-content">
       <table class="players-table">
@@ -14,19 +14,19 @@
           </tr>
         </thead>
         <tbody>
-         @for (item of [1,2,3,4,5,6,7]; track $index) {
+         @for (data of players; track data.player.id) {
             <tr >
-                <td>1</td>
+                <td>--</td>
                 <td>
                   <div class="player-info">
                     <div class="avatar">
                       <img [src]="" [alt]="">
                     </div>
-                    <span>Mouhamed Alaoui</span>
+                    <span>{{data.player.firstname}}  {{data.player.lastname}}</span>
                   </div>
                 </td>
-                <td>Debutant</td>
-                <td>Club Pool Academy</td>
+                <td>{{data.player.level}} </td>
+                <td>{{data.player.club?.name}}</td>
               </tr>
          }
         </tbody>

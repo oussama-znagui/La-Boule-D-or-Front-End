@@ -6,6 +6,7 @@ import { TournamentType } from "../enums/tournament-type";
 import { Club } from "./club";
 import { Player } from "./player";
 import { Stage } from "./stage";
+import { TournamentPLayers } from "./tournament-players";
 
 export interface Tournament {
     id: number;
@@ -25,7 +26,7 @@ export interface Tournament {
 
 
     stages: Stage[];
-    players: Player[];
+    players: TournamentPLayers[];
 
     
 

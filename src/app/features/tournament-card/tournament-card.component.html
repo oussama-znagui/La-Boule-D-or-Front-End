@@ -1,14 +1,21 @@
-<div class="container">
+<div class="container" (click)="goToTournament(tournament.id)">
     <div class="image">
-        <button>{{tournament.title}}</button>
+        <button >
+           @if (isClubsTournament(tournament)) {
+            Tournoi Des Clubs
+           }
+           @else{
+            Tournoi Individuel
+           }
+        </button>
     </div>
     <div class="data">
-        <p class="format">FORMAT : POINT BASED</p>
-        <h1>Tournoi Élite de Billard - Safi-Marrakech 2026</h1>
-        <p>2026-04-01 - 2026-04-01</p>
+        <p class="format">FORMAT : {{tournament.format}}</p>
+        <h1>{{tournament.title}}</h1>
+        <p>{{tournament.startDate}} - {{tournament.endDate}}</p>
         <div class="proprity">
-            <button>REGIONAL</button>
-            <button>NIVEAU : ADVANCED</button>
+            <button>{{tournament.type}}</button>
+            <button>NIVEAU : {{tournament.level}}</button>
             
         </div>
 

@@ -13,7 +13,7 @@
           }
 
           @for (tournament of tournaments$ | async; track tournament.id) {
-            <app-tournament-card />
+            <app-tournament-card  [tournament]="tournament"/>
           }
 
     </div>

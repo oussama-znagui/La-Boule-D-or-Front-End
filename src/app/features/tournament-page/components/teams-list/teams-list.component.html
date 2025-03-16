@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Clubs inscrits</h2>
+        <p class="subtitle">Liste des 0 clubs participant au tournoi</p>
+      </div>
+    <div class="teams">
+        @for (item of [1,2,3,4,5]; track $index) {
+            <app-club-card />
+        }
+    </div>
+</div>

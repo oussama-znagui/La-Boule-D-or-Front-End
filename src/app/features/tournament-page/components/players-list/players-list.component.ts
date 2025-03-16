@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { TournamentPLayers } from '../../../../models/tournament-players';
 
 @Component({
   selector: 'app-players-list',
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './players-list.component.css'
 })
 export class PlayersListComponent {
+  @Input() players!: TournamentPLayers[];
+
+
+  ngOnInit(){
+    console.log();
+  }
 
 }

@@ -1,0 +1,34 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    margin: 2rem auto;
+    gap: 2rem;
+}
+
+.state-card{
+    background-color: rgb(39 39 42);
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.state-card h1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: white;
+
+}
+
+.state-card h1 svg{
+    color: gold;
+}
+
+.state-card p{
+    font-size: 4rem;
+    font-weight: 800;
+    color: white;
+}

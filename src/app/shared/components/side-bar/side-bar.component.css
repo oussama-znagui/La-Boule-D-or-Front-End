@@ -1,0 +1,53 @@
+.side-bar{
+    height: 100vh;
+    width: 20vw;
+    background-color: rgba(24, 24, 27, 1);
+    padding: 2rem;
+
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: rgb(61, 60, 60) solid 1px;
+    padding-bottom: 1rem;
+
+}
+.logo img{
+    width: 15%;
+}
+
+.logo h1{
+    color: white;
+
+}
+
+.navigation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+.active , .navigation a:hover{
+    background-color: rgb(63, 63, 65) !important;
+    color:  rgb(16 185 129 ) !important;
+
+}
+
+.navigation a{
+    cursor: pointer;
+  
+    margin: .5rem 0;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    text-decoration: none;
+    color:  gray;
+    display: flex;
+    
+    align-items: center;
+    gap: 1rem;
+
+}
+

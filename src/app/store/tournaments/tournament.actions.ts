@@ -43,3 +43,20 @@ export const loadIndividualTournaments = createAction(
   export const clearTournamentFilter = createAction(
     '[Tournament] Clear Tournament Filter'
   );
+
+
+  export const loadTournamentById = createAction(
+    '[Tournament] Load Tournament By Id',
+    props<{id: number, tournamentType: 'individual' | 'clubs'}>()
+  )
+
+
+  export const loadTournamentByIdSuccess = createAction(
+    '[Tournament] Load Tournament By Is Success',
+    props<{ tournament: Tournament | null }>()
+  );
+  
+  export const loadTournamentByIdFailure = createAction(
+    '[Tournament] Load Tournament By Id Failure',
+    props<{ error: any }>()
+  );

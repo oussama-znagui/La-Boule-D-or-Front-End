@@ -1,0 +1,35 @@
+<div class="side-bar">
+    <div class="logo">
+        <img src="/assets/images/logo.png" alt="">
+        <h1>Boule D'or</h1>
+    </div>
+    <div class="navigation ">
+        <a routerLink="/dashboard"  [class.active]="isActive('/dashboard')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3Z" fill="currentColor"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a  routerLink="/dashboard/tournaments" [class.active]="isActive('/dashboard/tournaments')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 21h8v2H8v-2Zm9-17V3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1H3v3a5 5 0 0 0 5 5h1v2h6v-2h1a5 5 0 0 0 5-5V4h-4ZM5 7V5h2v4H7a3 3 0 0 1-3-3Zm12 2h-1V5h2v2a3 3 0 0 1-3 3Z" fill="currentColor"/>
+          </svg>
+          <span>Tournois</span></a>
+        <a  routerLink="/dashboard/clubs" [class.active]="isActive('/dashboard/clubs')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 7l-3 2 1 4h4l1-4-3-2Zm-6 7l-2 2 1 4h4l1-4-3-2Zm12 0l-3 2 1 4h4l1-4-2-2Z" fill="currentColor"/>
+          </svg>
+          <span>Clubs</span></a>
+        <a  routerLink="/dashboard/players" [class.active]="isActive('/dashboard/players')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="7" r="3" fill="currentColor"/>
+            <circle cx="17" cy="7" r="3" fill="currentColor"/>
+            <path d="M3 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2H3Zm10 0v-2a6 6 0 0 1 6-6h2v8h-8Z" fill="currentColor"/>
+          </svg>
+          <span>Joueurs</span></a>
+        <a  routerLink="/dashboard/referees" [class.active]="isActive('/dashboard/referees')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="5" r="3" fill="currentColor"/>
+            <path d="M9 9h6l1 8h-8l1-8Zm-3 8h12v2H6v-2Z" fill="currentColor"/>
+          </svg>
+          <span>Arbitres</span></a>
+        <a href="">Dashboard</a>
+    </div>
+</div>

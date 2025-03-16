@@ -29,4 +29,22 @@ export class TournamentService {
       })
     );
   }
+
+  getTournamentById(id:number, type: string): Observable<ClubsTournament | IndividualTournament | null>{
+
+    if(type == 'clubs'){
+      this.apiUrl = `http://localhost:8080/clubs-tournament/`
+    }else if(type == 'individual'){
+      this.apiUrl = `http://localhost:8080/pool-individual-tournament/`
+
+    }
+    console.log(this.apiUrl + id);
+    
+    return this.http.get<ClubsTournament | IndividualTournament>(this.apiUrl + id).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la récupération de tournois ', error);
+        return of(null); 
+      })
+    );
+  }
 }

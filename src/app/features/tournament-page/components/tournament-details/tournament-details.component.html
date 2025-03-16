@@ -12,7 +12,7 @@
               
             <div>
               <p class="label">Nombre de joueurs</p>
-              <p class="value">12</p>
+              <p class="value">{{nop}}</p>
             </div>
           </div>
           
@@ -24,7 +24,7 @@
             <div>
               <p class="label">Dates</p>
               <p class="value">
-                Du {{ formatDate("2024-01-01") }} au {{ formatDate("2024-01-01") }}
+                Du {{ sdate }} au {{ (edate) }}
               </p>
             </div>
           </div>
@@ -37,7 +37,7 @@
               
             <div>
               <p class="label">Mode</p>
-              <p class="value">A5_A7_A9 </p>
+              <p class="value">{{mode}} </p>
             </div>
           </div>
           
@@ -49,8 +49,8 @@
             <div>
               <p class="label">Type et Niveau</p>
               <p class="value">
-                 INDIVIDUAL • 
-                 PROFESSIONAL
+                 {{type}} • 
+                 {{level}}
               </p>
             </div>
           </div>
@@ -66,8 +66,8 @@
             <img [src]="" [alt]="">
           </div>
           <div>
-            <h3> "name"</h3>
-            <p> "adresse" </p>
+            <h3> {{club.name}}</h3>
+            <p> {{club.adresse}} </p>
           </div>
         </div>
       </div>

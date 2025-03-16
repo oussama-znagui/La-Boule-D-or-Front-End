@@ -7,7 +7,10 @@ import {
   loadIndividualTournamentsFailure,
   loadClubsTournaments,
   loadClubsTournamentsSuccess,
-  loadClubsTournamentsFailure
+  loadClubsTournamentsFailure,
+  loadTournamentById,
+  loadTournamentByIdSuccess,
+  loadTournamentByIdFailure
 } from './tournament.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -16,6 +19,7 @@ import { of } from 'rxjs';
 export class TournamentEffects {
     loadIndividualTournaments$
     loadClubTournaments$
+    loadTournamentById
     constructor(
         private actions$: Actions,
         private tournamentService: TournamentService
@@ -47,6 +51,16 @@ export class TournamentEffects {
               )
             )
           );
+
+          this.loadTournamentById = createEffect(() => 
+          this.actions$.pipe(
+            ofType(loadTournamentById),
+            mergeMap((action) => 
+            this.tournamentService.getTournamentById(action.id, action.tournamentType).pipe(
+              map((tournament) => loadTournamentByIdSuccess({ tournament })),
+              catchError((error) => of(loadTournamentByIdFailure({ error })))
+            ))
+          ))
       }
 
 

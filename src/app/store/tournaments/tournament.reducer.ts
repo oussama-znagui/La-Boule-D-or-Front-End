@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Tournament } from "../../models/tournament";
-import {loadIndividualTournamentsFailure,loadIndividualTournamentsSuccess,clearTournamentFilter,setTournamentFilter, loadClubsTournamentsFailure, loadClubsTournamentsSuccess, loadClubsTournaments, loadIndividualTournaments, } from "./tournament.actions";
+import {loadIndividualTournamentsFailure,loadIndividualTournamentsSuccess,clearTournamentFilter,setTournamentFilter, loadClubsTournamentsFailure, loadClubsTournamentsSuccess, loadClubsTournaments, loadIndividualTournaments, loadTournamentByIdSuccess, } from "./tournament.actions";
 import { IndividualTournament } from "../../models/individual-tournament";
 import { ClubsTournament } from "../../models/clubs-tournament";
 import { TournamentFilter } from "../../models/tournament-filter";
@@ -9,6 +9,8 @@ import { TournamentFilter } from "../../models/tournament-filter";
 export interface TournamentState {
   individualTournaments: IndividualTournament[];
   clubsTournaments: ClubsTournament[];
+  selectedTournament: IndividualTournament | ClubsTournament | null,
+
   filter: TournamentFilter;
   loading: boolean;
   error: any;
@@ -19,6 +21,7 @@ export const initialTournamentState: TournamentState = {
   clubsTournaments: [],
   filter: {},
   loading: false,
+  selectedTournament: null,
   error: null
 };
 
@@ -75,6 +78,14 @@ export const tournamentReducer = createReducer(
   on(clearTournamentFilter, state => ({
     ...state,
     filter: {}
+  })),
+
+
+  on(loadTournamentByIdSuccess, (state, { tournament }) => ({
+    ...state,
+    selectedTournament: tournament,
+    loading: false,
+    error: null,
   }))
   
 );

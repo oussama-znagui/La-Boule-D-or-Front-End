@@ -5,7 +5,8 @@ import { TournamentsPageComponent } from "./pages/tournaments-page/tournaments-p
 import { NavBarComponent } from "./shared/components/nav-bar/nav-bar.component";
 import { TournamentPageComponent } from "./pages/tournament-page/tournament-page.component";
 import { Store } from '@ngrx/store';
-import { loadIndividualTournaments } from './store/tournaments/tournament.actions';
+import { loadClubsTournaments, loadIndividualTournaments } from './store/tournaments/tournament.actions';
+import { loadPlayers } from './store/players/player.actions';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,8 @@ export class AppComponent {
   title = 'frontEnd';
   constructor(private store: Store) {
     this.store.dispatch(loadIndividualTournaments());
+    this.store.dispatch(loadPlayers());
+    this.store.dispatch(loadClubsTournaments());
     console.log("bonjour");
     
   }

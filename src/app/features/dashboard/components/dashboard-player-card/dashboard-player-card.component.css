@@ -1,0 +1,29 @@
+.card{
+    background-color: rgb(22, 22, 22);
+    display: flex;
+    padding: 1rem;
+    border-radius: 1rem;
+
+}
+
+.card img{
+    width: 20% ;
+    border-radius: 100rem;
+}
+
+.data1{
+    display: flex;
+   
+    align-items: center;
+    gap: .6rem;
+}
+.data h1{
+    color: white;
+    font-size: 1rem;
+}
+
+.actions button{
+    background-color: transparent;
+    color: red;
+    border: none;
+}

@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DatePipe } from "@angular/common"
+import { TounamentMode } from '../../../../enums/tounament-mode';
+import { TournamentType } from '../../../../enums/tournament-type';
+import { Level } from '../../../../enums/level';
+import { Club } from '../../../../models/club';
 @Component({
   selector: 'app-tournament-details',
   imports: [],
@@ -7,11 +11,16 @@ import { DatePipe } from "@angular/common"
   styleUrl: './tournament-details.component.css'
 })
 export class TournamentDetailsComponent {
+  @Input() nop!: number;
+  @Input() sdate! : Date;
+  @Input() edate! : Date;
+  @Input() mode!: TounamentMode;
+  @Input() type!: string;
+  @Input( ) level!: Level;
+  @Input() club!: Club;
+  
 
-  formatDate(dateString: string): string {
-    const date = new Date(dateString)
-    const datePipe = new DatePipe("fr-FR")
-    return datePipe.transform(date, "d MMMM yyyy à HH'h'mm") || ""
-  }
 
+
+  
 }

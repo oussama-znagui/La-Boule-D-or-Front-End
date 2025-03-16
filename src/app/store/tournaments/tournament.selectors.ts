@@ -107,3 +107,10 @@ function filterTournaments(tournaments: Tournament[], filter: any): Tournament[]
     return true;
   });
 }
+
+
+export const selectSelectedTournament = createSelector(
+  selectTournamentState,
+  (state: TournamentState) => state.selectedTournament
+);
+

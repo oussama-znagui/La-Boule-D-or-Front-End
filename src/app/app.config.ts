@@ -8,6 +8,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { tournamentReducer } from './store/tournaments/tournament.reducer';
 import { TournamentEffects } from './store/tournaments/tournament.effects';
 import { provideHttpClient } from '@angular/common/http';
+import { playerReducer } from './store/players/player.reducer';
+import { PlayerEffects } from './store/players/player.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,8 +18,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       tournament: tournamentReducer,
+      player: playerReducer
     }),
-    provideEffects(TournamentEffects),
+    provideEffects(TournamentEffects, PlayerEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
