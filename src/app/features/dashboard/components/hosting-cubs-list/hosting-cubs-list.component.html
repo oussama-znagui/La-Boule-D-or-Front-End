@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="hero">
+        <h1>
+            Choisir le club hôte
+        </h1>
+       
+    </div>
+    <div class="clubs">
+        @for (club of clubs; track club.id) {
+            <app-dashboard-club-card (addEvent)="addHosting($event)" [club]="club" [action]="'ADD'" />
+        }
+    </div>
+</div>

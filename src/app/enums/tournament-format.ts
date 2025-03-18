@@ -1,4 +1,4 @@
 export enum TournamentFormat {
-    POINT_BASED,
-    KNOCKOUT,
+    POINT_BASED=  "POINT_BASED",
+    KNOCKOUT ="KNOCKOUT",
 }

@@ -1,0 +1,20 @@
+<div class="card">
+    <img src="/assets/images/logo.png" alt=""> 
+    <div class="data">
+        <h1>
+            {{club.name}}
+        </h1>
+       
+            <p>Ville: {{club.city.name}}  |  Nobnre de Table : {{club.tables.length}} |  Espace : {{club.area}}m2</p> 
+            
+            @if (action == "ADD" ) {
+                <button class="add" (click)="addHostingClub()">Choisir</button>
+
+            }@if (action == "DELETE" ) {
+                <button class="add del" (click)="delete()">Supprimer</button>
+            }
+
+         
+       
+    </div>
+</div>

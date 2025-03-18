@@ -1,0 +1,39 @@
+.card{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background-color: rgb(22, 22, 22);
+    padding: 1rem;
+    border-radius: 1rem;
+    color: white;
+}
+.card img{
+    width: 20%;
+}
+.data p{
+    font-size: .8rem;
+}
+
+.add{
+    width: 100%;
+    margin-top: 1rem;
+    padding: .5rem 0;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(29, 29, 29);
+    color: white;
+
+}
+.add:hover{
+    color: black;
+    background-color: aliceblue;
+}
+
+.del{
+    background-color: red !important;
+}
+
+.del:hover{
+    background-color: rgb(228, 17, 17) !important;
+}

@@ -1,6 +1,6 @@
 export enum Level {
-    INTERMEDIATE,
-    BEGINNER,
-    ADVANCED,
-    ALL,
+    INTERMEDIATE =   "INTERMEDIATE",
+    BEGINNER=  "BEGINNER",
+    ADVANCED =  "ADVANCED",
+    ALL=  "ALL",
 }

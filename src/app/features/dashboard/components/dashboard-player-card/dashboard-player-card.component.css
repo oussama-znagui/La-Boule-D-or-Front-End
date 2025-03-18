@@ -24,6 +24,17 @@
 
 .actions button{
     background-color: transparent;
-    color: red;
+    cursor: pointer;
+ 
     border: none;
+}
+.d{
+    color: red;
+
+}
+.a{
+    color: green;
+}
+.selected{
+    background-color: rgb(74, 138, 88) !important;
 }

@@ -99,14 +99,14 @@ label{
     border-bottom: white solid 1px;
 }
 
-.players, .teams{
+.players, .teams, .hosting-club{
     background-color: rgb(51, 51, 51);
     padding: 1rem 1rem;
     border-radius: 1rem;
 
 }
 
-.players-hero, .teams-hero{
+.players-hero, .teams-hero, .hosting-hero{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -123,8 +123,13 @@ label{
     padding: .5rem 1rem;
     margin-left: 1rem;
 }
+.hosting-actions button{
+    
+    padding: .5rem 1rem;
+    margin-left: 1rem;
+}
 
-.add-player, .add-team{
+.add-player, .add-team, .hosting{
     padding: .5rem 1rem;
     background-color: white;
     border-radius: .5rem;
@@ -135,9 +140,43 @@ label{
 
 }
 
-.display-players, .display-teams{
+.display-players, .display-teams, .display-hosting{
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 1rem;
     padding: 2rem;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
 }

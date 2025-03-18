@@ -47,4 +47,15 @@ export class TournamentService {
       })
     );
   }
+
+
+  createindividualTournament(t: IndividualTournament): Observable<IndividualTournament>{
+
+    return this.http.post<IndividualTournament>("http://localhost:8080/pool-individual-tournament", t)
+
+  }
+
+  createClubstournament(t: ClubsTournament): Observable<ClubsTournament>{
+    return this.http.post<ClubsTournament>("http://localhost:8080/clubs-tournament", t)
+  }
 }

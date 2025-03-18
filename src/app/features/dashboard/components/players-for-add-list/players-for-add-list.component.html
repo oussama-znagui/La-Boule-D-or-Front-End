@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="hero">
+        <h1>
+            Ajouter Joueur
+        </h1>
+        <button (click)="close()" (click)="addPlayers()" >Ajouter</button>
+    </div>
+    <div class="players">
+        @for (player of players; track player.id) {
+            <app-dashboard-player-card [action]="'ADD'"  [player]="player" (e)="add($event)" (deleteEvent)="detePlayer($event)"/>
+        }
+    </div>
+</div>
