@@ -1,0 +1,10 @@
+.flash{
+    background-color: rgb(77, 165, 77);
+    font-weight: bold;
+    padding: 1rem 2rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 20%;
+    text-align: center;
+}

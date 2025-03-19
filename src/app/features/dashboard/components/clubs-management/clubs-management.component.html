@@ -1,0 +1,33 @@
+@if (flashMessge ) {
+   <div class="flash">
+    <app-flash-message [message] ="flashMessge" />
+   </div>
+}
+@if (displayDivForAdd==true) {
+    <div class="overlay">
+        <button class="close-btn" (click)="displayDivForAdd=false">X</button>
+        <div class="modal">
+            <app-club-request (addEvent)="added()" />
+        </div>
+    </div>
+}
+
+<div class="page">
+    <div class="hero">
+        <div class="title">
+            <h1>Gestion des Clubs</h1>
+        <p>Chaque coup compte, chaque tournoi écrit l'histoire.</p>
+        </div>
+        <div class="actions">
+            <button (click)="displayDivForAdd=true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2v12m-6-6h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              
+              Creer un Club</button>
+        </div>
+    </div>
+    <div class="clubs">
+        <app-dashboard-clubs-list [clubs]="clubs"/>
+    </div>
+   
+</div>

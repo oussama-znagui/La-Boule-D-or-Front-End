@@ -1,0 +1,48 @@
+.card{
+    width: 50vw;
+    height: 70vh;
+    background-color: rgb(37, 37, 37);
+    border-radius: 2rem;
+    text-align: left;
+    padding: 2rem;
+    overflow-y: scroll;
+}
+
+.card h1{
+    margin: 1rm 0;
+    font-size: 1.5rem;
+
+}
+
+.all{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
+    margin: 1rem 0;
+    border-bottom: white solid 1px;
+    padding-bottom: 1rem;
+}
+
+.all p span{
+    font-weight: bold;
+}
+
+.title{
+    
+    border-bottom: white solid 1px;
+    padding-bottom: 1rem;
+}
+
+.prize , .rules, .hostingClub{
+    border-bottom: white solid 1px;
+    padding: 1rem 0;
+
+}
+
+.players{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
+    border-bottom: white solid 1px;
+    padding: 1rem 0;
+}

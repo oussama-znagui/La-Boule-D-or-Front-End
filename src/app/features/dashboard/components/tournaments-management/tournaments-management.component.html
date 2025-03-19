@@ -1,4 +1,12 @@
 
+@if (displayedTournament ) {
+    <div class="overlay">
+        <button class="close-btn" (click)="displayedTournament=null">X</button>
+        <div class="modal">
+            <app-dashboard-tornament-display [tournament]="displayedTournament" />
+        </div>
+    </div>
+}
 <div class="page">
     <div class="hero">
         <div class="title">
@@ -12,6 +20,9 @@
               
               Creer un Tournoi</button>
         </div>
+    </div>
+    <div class="tournaments">
+        <app-dashboard-tournaments-list (displayEvent)="display($event)" [clubsTournaments]="clubsTournaments" [individuelTournament]="individuelTournament"/>
     </div>
     
    

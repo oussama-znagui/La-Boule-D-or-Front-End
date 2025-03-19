@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="title">  <h1>{{tournament.title}}</h1></div>
+    <div class="data">
+        <div class="all">
+          <p>ID <br> <span>{{tournament.id}}</span></p>
+          <p>Type <br> <span>{{tournament.type}}</span></p>
+          <p>Players <br> <span>{{tournament.players.length + "/"  + tournament.numberOfPlayers}}</span></p>
+          <p>Status <br> <span>{{tournament.status}}</span></p>
+          <p>Start Date<br> <span>{{tournament.startDate}}</span></p>
+          <p>Date de fin <br> <span>{{tournament.id}}</span></p>
+          <p>Mode <br> <span>{{tournament.mode}}</span></p>
+          <p>Forat<br> <span>{{tournament.format}}</span></p>
+          <p>Niveau<br> <span>{{tournament.level}}</span></p>
+        </div>
+        <div class="prize">
+            <h2>Prix</h2>
+            <p>{{tournament.prize}}</p>
+        </div>
+        <div class="rules">
+            <h2>Regle generale</h2>
+            <p>{{tournament.rules}}</p>
+        </div>
+        <div class="hostingClub">
+            <h2>Club H'ote</h2>
+            <app-dashboard-club-card [club]="tournament.hostingClub" />
+        </div>
+        <div class="tabs">
+            <div class="options">
+                <button>Joueurs</button>
+                <button>phase</button>
+            </div>
+            <div class="players">
+                <h2>Joueurs : </h2>
+                @for (player of tournament.players; track $index) {
+                   
+                    <app-dashboard-player-card [player]="player.player" />
+                }
+              
+            </div>
+            <div class="stages">
+
+            </div>
+        </div>
+
+    </div>
+</div>

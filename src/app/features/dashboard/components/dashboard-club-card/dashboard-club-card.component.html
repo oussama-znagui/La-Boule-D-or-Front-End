@@ -5,7 +5,10 @@
             {{club.name}}
         </h1>
        
-            <p>Ville: {{club.city.name}}  |  Nobnre de Table : {{club.tables.length}} |  Espace : {{club.area}}m2</p> 
+            @if (club.tables) {
+                Nobnre de Table : {{club.tables.length}} 
+            }
+            <p>Ville: {{club.city.name}}  |   Espace : {{club.area}}m2</p> 
             
             @if (action == "ADD" ) {
                 <button class="add" (click)="addHostingClub()">Choisir</button>

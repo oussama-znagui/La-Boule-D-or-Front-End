@@ -23,5 +23,26 @@ export class ClubService {
     )
 
   }
+
+  addClub(c: Club): Observable<Club>{
+    return this.http.post<Club>(this.apiUrl,c).pipe(
+      catchError(error => {
+        console.error("Erreur lors de la creation du club",error);
+          return of({} as Club)
+      })
+    )
+    
+  }
+
+  deleteClub(id: number): Observable<string>{
+    return this.http.delete<string>(this.apiUrl + `/${id}`).pipe(
+      catchError(error => {
+        console.error("Erreur lors de la suppression du club",error);
+          return of(error as string)
+      })
+
+    )
+    
+  }
   
 }

@@ -1,0 +1,60 @@
+<div class="container">
+    <h1>Ajouter Nouveau Club</h1>
+
+<form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
+    <div class="group1">
+        <div class="field">
+            <label for="">Nom du club</label>
+            <input type="text" id="name" formControlName="name">
+            <div *ngIf="clubForm.get('name')?.touched && clubForm.get('title')?.invalid" class="error">
+                Obligatoire min 3
+            </div> 
+        </div>
+        <div class="field">
+            <label for="">Adresse du club</label>
+            <input type="text" id="adresse" formControlName="adresse">
+            <div *ngIf="clubForm.get('adresse')?.touched && clubForm.get('adresse')?.invalid" class="error">
+                Obligatoire min 3
+            </div> 
+        </div>
+    </div>
+    <div class="group1">
+        <div class="field">
+            <label for="">Ville</label>
+            <select name="" id="city_id" formControlName="city_id">
+               @for (city of cities; track city.id) {
+                <option value="{{city.id}}">{{city.name}}</option>
+               }
+            </select>
+            <div *ngIf="clubForm.get('city_id')?.touched && clubForm.get('city_id')?.invalid" class="error">
+                *Obligatoire 
+            </div> 
+        </div>
+        <div class="field">
+            <label for="">Capacité</label>
+            <input type="number" id="capacity" formControlName="capacity">
+            <div *ngIf="clubForm.get('capacity')?.touched && clubForm.get('capacity')?.invalid" class="error">
+                *Obligatoire 
+            </div> 
+        </div>
+    </div>
+    <div class="group1">
+        <div class="field">
+            <label for="">Date de Creation</label>
+            <input type="date" id="fondationDate" formControlName="fondationDate">
+            <div *ngIf="clubForm.get('fondationDate')?.touched && clubForm.get('fondationDate')?.invalid" class="error">
+                *Obligatoire 
+            </div> 
+        </div>
+        <div class="field">
+            <label for="">Superficie</label>
+            <input type="number" id="area" formControlName="area">
+            <div *ngIf="clubForm.get('area')?.touched && clubForm.get('area')?.invalid" class="error">
+                *Obligatoire 
+            </div> 
+            
+        </div>
+    </div>
+    <button  type="submit" [disabled]="clubForm.invalid">Ajouter</button>
+</form>
+</div>

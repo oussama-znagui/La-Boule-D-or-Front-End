@@ -1,0 +1,55 @@
+@if (flashMessge ) {
+    <div class="flash">
+     <app-flash-message [message] ="flashMessge" />
+    </div>
+ }
+
+@if (alert==true) {
+    <div class="overlay">
+        <button class="close-btn" (click)="alert=false">X</button>
+        <div class="modal">
+            <app-alert-message [message]="'Voulez Vous Supprimer ce club'"  (yesEnvent)="deleteAproved()" (noEnvent)="alert=false"/>
+                </div>
+    </div>
+}
+
+<p>Total des Clubs : {{clubs.length}}</p>
+<table>
+ <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>Ville</th>
+        <th>Capacité</th>
+        <th>Date de Creation</th>
+        <th>Superficie</th>
+        <th> Actions</th>
+    </tr>
+ </thead>
+ <tbody>
+  @for (club of clubs; track club.id) {
+    <tr>
+        <td>{{club.id}}</td>
+        <td>{{club.name}}</td>
+        <td>{{club.adresse}}</td>
+        <td>{{club.city.name}}</td>
+        <td>{{club.capacity}}</td>
+        <td>{{club.fondationDate}}</td>
+        <td>   {{club.area}}</td>
+            <td><svg class="delete" (click)="delete(club.id)" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 7h12m-9 0V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m2 0v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7h12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 11v6m4-6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <svg class="update" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12a9 9 0 1 1-4-7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 3v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              
+               </td>
+    </tr>
+  }
+
+ </tbody>
+
+</table>
