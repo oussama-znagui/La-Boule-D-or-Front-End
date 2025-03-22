@@ -1,2 +1,5 @@
 export enum Status {
+    SCHEDULED="SCHEDULED",
+    ONGOING="ONGOING",
+    COMPLETED="COMPLETED"
 }

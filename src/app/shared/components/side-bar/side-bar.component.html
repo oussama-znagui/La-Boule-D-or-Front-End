@@ -30,7 +30,7 @@
             <path d="M9 9h6l1 8h-8l1-8Zm-3 8h12v2H6v-2Z" fill="currentColor"/>
           </svg>
           <span>Arbitres</span></a>
-          <a  routerLink="/dashboard/stages" [class.active]="isActive('/dashboard/referees')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a  routerLink="/dashboard/stages" [class.active]="isActive('/dashboard/stages')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="5" cy="12" r="2" fill="currentColor"/>
             <circle cx="12" cy="12" r="2" fill="currentColor"/>
             <circle cx="19" cy="12" r="2" fill="currentColor"/>
@@ -38,6 +38,19 @@
           </svg>
           
           <span>Gestion Des Phase</span></a>
+          <a  routerLink="/dashboard/challenges" [class.active]="isActive('/dashboard/challenges')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="9" y="6" font-size="6" fill="currentColor" font-weight="bold">VS</text>
+          
+            <circle cx="7" cy="14" r="5" stroke="currentColor" stroke-width="2"/>
+            <text x="5.5" y="16" font-size="4" fill="currentColor" font-weight="bold">8</text>
+          
+        
+            <circle cx="17" cy="14" r="5" stroke="currentColor" stroke-width="2"/>
+            <text x="15.5" y="16" font-size="4" fill="currentColor" font-weight="bold">8</text>
+          </svg>
+          
+          
+          <span>Gestion Des Defies</span></a>
         <a href="">Dashboard</a>
     </div>
 </div>

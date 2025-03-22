@@ -1,0 +1,46 @@
+<form  [formGroup]="stageForm" (ngSubmit)="onSubmit()">
+    <div class="hero">
+        <h1>Ajouter Une Phase</h1>
+    </div>
+    <div class="form">
+        <div class="field">
+            <label for="">Numero</label>
+            <input type="number" formControlName="roundNumber">
+        </div>
+        <div class="field">
+            <label for="">Type</label>
+            <select name="" id="" formControlName="type">
+               @for (type of stageTypes; track type) {
+                <option value="{{type}}">{{type}}</option>
+               }
+            </select>
+            @if (stageForm.get("type")?.touched&& stageForm.get('type')?.invalid ) {
+                <div>  Obligatoire min 3</div>
+            }
+        </div>
+        <div class="field">
+            <label for="">Date De Debut</label>
+            <input type="date" formControlName="startDate">
+        </div>
+        <div class="field">
+            <label for="">Status</label>
+            <select name="" id="" formControlName="status">
+                @for (s of status; track s) {
+                    <option value="{{s}}">{{s}}</option>
+                   }
+            </select>
+        </div>
+        <div class="field">
+            <label for="">Niveau</label>
+            <select name="" id="" formControlName="level">
+                @for (level of leveles; track level) {
+                    <option value="{{level}}">{{level}}</option>
+                   }
+            </select>
+        </div>
+    </div>
+    @if (errorMessage) {
+        <div>{{errorMessage}}</div>
+    }
+    <button  type="submit"   >Confirmer</button>
+</form>

@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="hero">
+        <h1>
+            Ajouter Clunv
+        </h1>
+        <button (click)="close()" (click)="addTeams()" >Ajouter</button>
+    </div>
+    <div class="players">
+        @for (club of clubs; track club.id) {
+            <app-dashboard-club-card />
+        }
+    </div>
+</div>

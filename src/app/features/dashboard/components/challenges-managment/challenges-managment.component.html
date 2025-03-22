@@ -1,0 +1,119 @@
+<div class="page">
+    <div class="hero">
+        <div class="title">
+            <h1>Gestion des Defies</h1>
+        <p>Chaque coup compte, chaque tournoi écrit l'histoire.</p>
+        </div>
+        <div class="actions">
+            <button ><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2v12m-6-6h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              
+              Creer un Defie</button>
+        </div>
+    </div>
+    <div class="searsh">
+        <div class="field">
+            <label for="">Choisir le tournoi</label>
+            <select name="" id="" (change)="changeTournament($event)">
+                <option value="">-------Choisir le Tournoi-------</option>
+                @for (it of iTournaments; track it.id) {
+                <option value="{{it.id}}">(Individuel) {{it.title}}</option>
+            }
+            @for (ct of cTournaments; track ct.id) {
+                <option value="{{ct.id}}">(Club) {{ct.title}}</option>
+            }
+            </select>
+        </div>
+       @if (selectedtournament) {
+        <div class="field">
+            <label for="">Choisir la phase</label>
+            <select name="" id="" (change)="changeStage($event)">
+                @for (st of selectedtournament.stages; track st.id) {
+                    <option value="{{st.id}}">
+                        {{st.level}}
+                        @if (st.type == "POINT_BASED") {
+                            ({{st.roundNumber}})
+                        }
+                    </option>
+                }
+            </select>
+        </div>
+       }
+    </div>
+
+   @if (!selectedtournament) {
+    <div class="empty">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 21h8v2H8v-2Zm9-17V3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1H3v3a5 5 0 0 0 5 5h1v2h6v-2h1a5 5 0 0 0 5-5V4h-4ZM5 7V5h2v4H7a3 3 0 0 1-3-3Zm12 2h-1V5h2v2a3 3 0 0 1-3 3Z" fill="currentColor"/>
+          </svg>
+<h1>Choisir le Tournoi</h1>          
+    </div>
+   }@else {
+    <div class="tournament">
+        <h1>{{selectedtournament.title}} <span>{{selectedtournament.status}}</span></h1>
+        <div class="tournament_data">
+            <p>
+                Date De Debut : <span>{{selectedtournament.startDate}}</span>
+            </p>
+            <p>
+                Date De fin : <span>{{selectedtournament.endDate}}</span>
+            </p>
+            <p>
+                Type : <span>{{selectedtournament.type}}</span>
+            </p>
+            <p>
+                Format : <span>{{selectedtournament.format}}</span>
+            </p>
+
+        </div>
+       
+    </div>
+   @if (!selectedStage) {
+    <div class="empty">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+           
+            <text x="9" y="6" font-size="6" fill="currentColor" font-weight="bold">VS</text>
+          
+            
+            <circle cx="7" cy="14" r="5" stroke="currentColor" stroke-width="2"/>
+            <text x="5.5" y="16" font-size="4" fill="currentColor" font-weight="bold">8</text>
+          
+          
+            <circle cx="17" cy="14" r="5" stroke="currentColor" stroke-width="2"/>
+            <text x="15.5" y="16" font-size="4" fill="currentColor" font-weight="bold">8</text>
+          </svg>
+          <h1>Choisir la Phase</h1>
+          
+    </div>
+   }@else {
+    <div class="tournament">
+        <h1> {{selectedStage.level}}
+            @if (selectedStage.type == "POINT_BASED") {
+                ({{selectedStage.roundNumber}})
+            } <span>{{selectedStage.status}}</span></h1>
+        <div class="tournament_data">
+            <p>
+                Date De Debut : <span>{{selectedStage.startDate}}</span>
+            </p>
+            
+            <p>
+                Type : <span>{{selectedStage.type}}</span>
+            </p>
+            <p>
+                ID : <span>#{{selectedStage.id}}</span>
+            </p>
+
+        </div>
+       
+    </div>
+    <div class="challenges">
+        <app-dashboard-challenges-list />
+     
+    </div>
+   }
+  
+   }
+  
+   
+</div>

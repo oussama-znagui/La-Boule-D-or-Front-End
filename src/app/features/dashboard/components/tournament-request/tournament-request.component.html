@@ -1,4 +1,13 @@
 
+@if (displayTeamForAdd==true) {
+    <div class="overlay">
+        <button class="close-btn" (click)="displayTeamForAdd=false">X</button>
+        <div class="modal">
+            <app-clubs-fot-add-list [clubs]="clubs | async"/>
+            <app-players-for-add-list [players]="playersForAdd | async" (e)="addPlayers($event)" (closeEvent)="displayPlayersForAdd=false"/>
+        </div>
+    </div>
+}
 @if (displayPlayersForAdd==true) {
     <div class="overlay">
         <button class="close-btn" (click)="displayPlayersForAdd=false">X</button>
@@ -24,7 +33,7 @@
     </div>
     <div class="add">
         <div class="type">
-            <button  [ngClass]="type == 'individuel' ? 'active' : ''"  (click)="setType('individuel')">
+            <button  [ngClass]="type == 'individuel' ? 'active' : ''"  (click)="type = 'individuel'">
                 <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="8" r="4" fill="currentColor"/>
                     <path d="M4 20v-2a6 6 0 0 1 12 0v2H4Z" fill="currentColor"/>
@@ -32,7 +41,7 @@
                   
                 Tournoi Individuel
             </button>
-            <button [class.active]="type == 'clubs'" (click)="setType('clubs')">
+            <button [class.active]="type == 'clubs'" (click)="type = 'clubs'">
                 <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="9" cy="7" r="3" fill="currentColor"/>
                     <circle cx="17" cy="7" r="3" fill="currentColor"/>
@@ -56,7 +65,7 @@
                 </div>
                 <div class="field">
                     <label for="">Type du tournoi</label>
-                    <select name="" id="type" (change)="changeTournamentType($event)" (change)="getplayers()" formControlName="type">
+                    <select name="" id="type" (change)="changeTournamentType($event)" (change)="getplayers()"(change)="getClubs()" formControlName="type">
                         <option value="NATIONAL">NATIONAL</option>
                         <option value="REGIONAL">REGIONAL</option>
                         <option value="CITY_LEVEL">CITY_LEVEL</option>
@@ -170,7 +179,10 @@
                      <h1>Clubs</h1>
                     <div class="noc">
                         <form action="" >
-                            <input type="number" placeholder="Nombre de Clubs">
+                            <input type="number" placeholder="Nombre de Clubs" (input)="checkTeamNumber($event)">
+                            @if (teamsNumberError) {
+                                <p>{{teamsNumberError}}</p>
+                            }
                          </form>
     
                     </div>
@@ -182,7 +194,7 @@
                          <button type="button">Manuel</button>
                      </div>
      
-                     <button type="button" class="add-team">
+                     <button type="button" class="add-team" (click)="displayTeamForAdd=true">
                          Ajouter Club
                      </button>
                   

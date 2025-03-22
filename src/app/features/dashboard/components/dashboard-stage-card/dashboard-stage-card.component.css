@@ -1,0 +1,58 @@
+.card{
+    background-color: rgb(61, 61, 61);
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+    color: white;
+}
+.hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: white solid 1px;
+}
+.hero button{
+    padding: .4rem 1rem;
+    border: none;
+    background-color: rgba(0, 173, 116, 0.959);
+    border-radius: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.data{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    margin: 1rem auto;
+    border-bottom: white solid 1px;
+}
+.data p{
+    display: flex;
+    flex-direction: column;
+}
+
+.data p span{
+    font-weight: 700;
+}
+.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.actions button{
+    padding: .4rem 1rem;
+    margin-left: .5rem;
+    border: none;
+    border-radius: .5rem;
+    
+}
+
+.u{
+    background-color: yellow;
+}
+.d{
+    background-color: red;
+}

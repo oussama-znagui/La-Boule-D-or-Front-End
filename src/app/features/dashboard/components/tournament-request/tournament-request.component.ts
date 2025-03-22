@@ -17,11 +17,12 @@ import { DashboardClubCardComponent } from "../dashboard-club-card/dashboard-clu
 import { HostingCubsListComponent } from "../hosting-cubs-list/hosting-cubs-list.component";
 import { TournamentService } from '../../../../services/tournament.service';
 import { TournamentPlayerService } from '../../../../services/tournament-player.service';
+import { ClubsFotAddListComponent } from "../clubs-fot-add-list/clubs-fot-add-list.component";
 
 
 @Component({
   selector: 'app-tournament-request',
-  imports: [DashboardPlayerCardComponent, CommonModule, PlayersForAddListComponent, ReactiveFormsModule, DashboardClubCardComponent, HostingCubsListComponent],
+  imports: [DashboardPlayerCardComponent, CommonModule, PlayersForAddListComponent, ReactiveFormsModule, DashboardClubCardComponent, HostingCubsListComponent, ClubsFotAddListComponent],
   templateUrl: './tournament-request.component.html',
   styleUrl: './tournament-request.component.css'
 })
@@ -68,10 +69,14 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
   addedPlayers: Player[] = []
 
   displayPlayersForAdd: boolean = false;
+  displayTeamForAdd:  boolean = false;
 
   playersForAdd!: Observable<Player[]> ;
 
   playersNumberError: string | null = null;
+  teamsNumberError: string | null = null;
+
+  numberOfPlayers: number = 0;
 
 
   tournamentFornamt: TournamentFormat = TournamentFormat.POINT_BASED;
@@ -85,16 +90,10 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
 
   tournamentPlayersRequest: {player_id: number, tournement_id: number}[] = [];
 
-  addHosting(c: Club){
-    console.log("egerg");
-    
+  addHosting(c: Club){    
     this.hostingClub = c ;
     this.hostingClubId = c.id
-    // console.log(this.hostingClub);
-    
-
     this.displayHostingClubs = false;
-
   }
   displayHostingClubspop(){
     this.getHostingClubs()
@@ -105,9 +104,6 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
   getHostingClubs(){
     this.getClubs();
     this.clubs?.subscribe(data => this.hostingClubs = data)
-    console.log(this.clubs);
-    console.log(this.tournamentType);
-    
     switch (this.tournamentType) {
       case "REGIONAL":
         this.clubs?.subscribe(data => this.hostingClubs = data.filter(c => c.city.region == this.selectedRegion))
@@ -124,8 +120,6 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
       default:
         break;
     }
-    
-
 
   }
 
@@ -133,10 +127,7 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
 
 
 
-  ngOnInit(){
-    // this.regions.push()
-    // this.getplayers('')
-    
+  ngOnInit(){      
 
   }
 
@@ -146,24 +137,20 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
       return;
     }
 
-    console.log("to send "  + this.tournamentForm.value);
+   
     this.tournamentForm.patchValue({
       hostingClub_id: this.hostingClubId,
     })
-    console.log(this.hostingClubId);
     
    if(this.type == 'individuel'){
     this.tournamentService.createindividualTournament(this.tournamentForm.value).subscribe(response => {
       if(response && this.addedPlayers.length > 0){
         
         this.addedPlayers.map(p => this.tournamentPlayersRequest.push({player_id: p.id, tournement_id: response.id}))
-        this.tournamentPlayerService.addPlayersToTournament(this.tournamentPlayersRequest).subscribe(res =>{
-          console.log("added players" + res);
-          
+        this.tournamentPlayerService.addPlayersToTournament(this.tournamentPlayersRequest).subscribe(res =>{         
         })
 
       }
-      console.log('added:', response);
 
       // this.tournamentForm.reset();
     });
@@ -201,25 +188,16 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
   }
 
 
-  setType(type: "clubs" | "individuel"){
-    console.log("allo");
-    this.type = type; 
-    console.log(this.type);
-  
-    
-  }
-
 
   changeTournamentType(event : any){
     this.tournamentType = event.target.value;
+    this.addedPlayers = [];
     if(this.tournamentType == "CITY_LEVEL"){
       this.getCities();
-     
+  
     }
     if(this.tournamentType == "CLUB_LEVEL"){
-      this.getClubs();
-      console.log("ee");
-      
+      this.getClubs();     
     }
   }
 
@@ -229,90 +207,57 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
   }
 
   getClubs(){
-    this.clubs = this.clubService.getAllClubs();
-  this.clubs.subscribe(response => {
-    console.log(response);
-    
-   });
    
-    
-
-    
+    this.clubs = this.clubService.getAllClubs();
+    if(this.type == "clubs"){
+      //les clubs 
+    }
   }
 
   getplayers(){
     this.playersForAdd = this.playerService.getAllPlayers()
-    console.log(this.tournamentType);
-
-
-    if(this.tournamentType == "NATIONAL"){
-      
-          
+      if(this.tournamentType == "NATIONAL"){
+                
     }
-
     if(this.tournamentType == "REGIONAL"){
-      // console.log(this.selectedRegion);
+    
       this.playersForAdd.subscribe(data => {
         data.filter(p => p.city).forEach(p=> console.log("dd" + p.city.region)
         )
       })
-      console.log("hello" + Region[this.selectedRegion as keyof typeof Region]);
-      
       this.playersForAdd = this.playersForAdd.pipe(
         map(players => players.filter(p =>p.city && p.city.region == Region[this.selectedRegion as keyof typeof Region]))
-  
       )
-    
     }
-
     if(this.tournamentType == "CITY_LEVEL"){
-
-      this.playersForAdd = this.playersForAdd.pipe(
-        map(players => players.filter(p =>p.city && p.city.id == this.selectedCityId))
-  
-      )
-        
+      this.playersForAdd = this.playersForAdd.pipe( map(players => players.filter(p =>p.city && p.city.id == this.selectedCityId)))  
     }
-
-
     if(this.tournamentType == "CLUB_LEVEL"){
-      this.playersForAdd.subscribe(data => {
-        data.filter(p => p.club).forEach(p=> console.log("dd" + p.club?.id)
-        )
-      })
-
-      this.playersForAdd = this.playersForAdd.pipe(
-        map(players => players.filter(p =>p.club && p.club.id == this.selectedClubId))
-  
-      )
-        
+      this.playersForAdd.subscribe(data => {data.filter(p => p.club).forEach(p=> console.log("dd" + p.club?.id))})
+      this.playersForAdd = this.playersForAdd.pipe(map(players => players.filter(p =>p.club && p.club.id == this.selectedClubId)))
     }
-
-
 
   }
 
 
   addPlayers(e: Player[]){
-    console.log(e);
-    
+    if(this.addedPlayers.concat(e).length > this.numberOfPlayers){
+     return
+      
+    }
   this.addedPlayers = this.addedPlayers.concat(e); 
-  console.log(this.addedPlayers);
-
-  console.log(this.addedPlayers);
-  
+  this.playersForAdd = this.playersForAdd.pipe(
+    map(players => players = players.filter(p => !this.addedPlayers.some(p1 => p1.id == p.id)))
+   )
   }
 
 
   deletePlayer(e: Player){
-    console.log("allo");
-    
     this.addedPlayers= this.addedPlayers.filter(p => p.id != e.id)
-
-
   }
 
   changeRegion(r: any){
+    
     
     switch (this.tournamentType) {
       case 'REGIONAL':
@@ -325,18 +270,11 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
           this.getplayers()
         break;
         case 'CLUB_LEVEL':
-
           this.selectedClubId = r.target.value
           this.getplayers()
           this.clubs?.subscribe(data => {
-           
-            this.hostingClub  = data.filter(cl => cl.id == r.target.value)[0]
-            this.hostingClubId = data.filter(cl => cl.id == r.target.value)[0].id;
-            
-            
-            console.log("hos" + this.hostingClub.name);
-            
-           
+          this.hostingClub  = data.filter(cl => cl.id == r.target.value)[0]
+          this.hostingClubId = data.filter(cl => cl.id == r.target.value)[0].id;
 
           })
         break;
@@ -347,13 +285,11 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
   
   }
 
-
   changeLevel(l: any){
     this.playersForAdd.subscribe(data => console.log(data.length)    )
 
    if(l.target.value != 'ALL'){
-    console.log("rr");
-    
+
     this.playersForAdd = this.playersForAdd.pipe(
       map(players => players.filter(p =>p.level && p.level == Level[l.target.value as keyof typeof Level]))
 
@@ -375,6 +311,53 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
   }
 
 
+  chekPlayerOrTeamsNumber(n: number): boolean{
+    if(this.tournamentFornamt == TournamentFormat.KNOCKOUT){
+      while (n % 2 == 0){
+         n = n/2;
+       }
+       return n == 1;
+   
+    }else{
+      return n%2 == 0
+
+    }
+
+
+  }
+
+  checkTeamNumber(event: any){
+    console.log("srger");
+    
+    if(this.type == "clubs"){
+      let n = event.target.value;
+  
+    if(!n){
+      this.teamsNumberError = "Obligatoire"
+      return
+    } 
+
+    if(!this.chekPlayerOrTeamsNumber(n)){
+      switch (this.tournamentFornamt) {
+        case TournamentFormat.KNOCKOUT:
+           this.teamsNumberError = "le nombres des clubs pour une competition doit etre [4,8,16,32,64, ...]"
+          break;
+          case TournamentFormat.POINT_BASED:
+            this.teamsNumberError = "le nombres des clubs pour une competition : X2"
+            break;
+        default:
+          break;
+      }
+
+    }
+    else{
+     
+        this.teamsNumberError = null;
+      
+    }
+
+    }
+  }
 
   checkPlayersNumber(event: any){
     
@@ -384,37 +367,30 @@ constructor(private tournamentPlayerService: TournamentPlayerService,private tou
     if(!n){
       this.playersNumberError = "Obligatoire"
       return
-    }
+    }        
 
-       
-    
-    console.log("heey" + this.tournamentFornamt)
-
-    if(this.type == 'individuel' && this.tournamentFornamt == TournamentFormat.POINT_BASED){
-      console.log(n);
-      while (n % 2 == 0){
-     console.log("alloo");
-      n = n/2;
-    }
-
-    if(n != 1){
-      this.playersNumberError = "le nombres des joueurs pour une competition doit etre [4,8,16,32,64, ...]"
-    }else{
-      this.playersNumberError = null
-    }
-    }
-
-  ;
-    
-    if(this.type == 'individuel' && this.tournamentFornamt == TournamentFormat.KNOCKOUT){
-      console.log("alloo");
-      
-      if(n % 2 != 0){
-        this.playersNumberError = "le nombres des joueurs pour une competition : X2"
-      }else{
-        this.playersNumberError = null
+    if(this.type == 'individuel' && !this.chekPlayerOrTeamsNumber(n) ){
+      switch (this.tournamentFornamt) {
+        case TournamentFormat.KNOCKOUT:
+           this.playersNumberError = "le nombres des joueurs pour une competition doit etre [4,8,16,32,64, ...]"
+          break;
+          case TournamentFormat.POINT_BASED:
+            this.playersNumberError = "le nombres des joueurs pour une competition : X2"
+            break;
+        default:
+          break;
       }
     }
+
+    
+    if(this.chekPlayerOrTeamsNumber(n)){
+      this.playersNumberError = null;
+      this.numberOfPlayers = n;
+    }
+
+  
+    
+    
 
 
   }
