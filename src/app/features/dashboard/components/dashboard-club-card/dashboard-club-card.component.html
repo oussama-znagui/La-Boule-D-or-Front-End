@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [class.added]="isAdded(club)">
     <img src="/assets/images/logo.png" alt=""> 
     <div class="data">
         <h1>
@@ -6,7 +6,7 @@
         </h1>
        
             @if (club.tables) {
-                Nobnre de Table : {{club.tables.length}} 
+                Nombre de Table : {{club.tables.length}} 
             }
             <p>Ville: {{club.city.name}}  |   Espace : {{club.area}}m2</p> 
             
@@ -16,8 +16,31 @@
             }@if (action == "DELETE" ) {
                 <button class="add del" (click)="delete()">Supprimer</button>
             }
+           
 
          
        
     </div>
+   
+    @if (action== "ADDtoTOURNAMENT") {
+       <div class="actions">
+        <div></div>
+       
+       @if (!isAdded(club)) {
+        <button (click)="addToTOurnament()" class="addToTour"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 2v12m-6-6h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          </button>
+       }@else {
+        <button (click)="deleteFromTour()">
+            <svg  class="deleteFromTour" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 7h12m-9 0V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m2 0v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7h12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 11v6m4-6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+        </button>
+       
+          
+       }
+       </div>
+    }
 </div>

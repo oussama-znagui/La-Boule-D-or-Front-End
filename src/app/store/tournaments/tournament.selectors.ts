@@ -2,9 +2,29 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IndividualTournament } from '../../models/individual-tournament';
 import { ClubsTournament } from '../../models/clubs-tournament';
 import { Tournament } from '../../models/tournament';
-import { TournamentState } from './tournament.reducer';
+import { RequestTournamentState, TournamentState } from './tournament.reducer';
 
 export const selectTournamentState = createFeatureSelector<TournamentState>('tournament');
+export const selectRequestTournamentState = createFeatureSelector<RequestTournamentState>('requestTournament');
+
+export const selectTypeRequestTournamentState = createSelector(
+  selectRequestTournamentState,
+  state => state.tournamentType
+)
+
+export const selectRequestTournament = createSelector(
+  selectRequestTournamentState,
+  state => state.tournament
+)
+
+export const selectZoneRequestTournamentState = createSelector(
+  selectRequestTournamentState,
+  state => state.zone
+)
+export const selectZoneDataRequestTournamentState = createSelector(
+  selectRequestTournamentState,
+  state => state.zoneData
+)
 
 export const selectIndividualTournaments = createSelector(
   selectTournamentState,

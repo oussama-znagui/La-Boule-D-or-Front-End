@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { tournamentReducer } from './store/tournaments/tournament.reducer';
+import { requestTournamentReducer, tournamentReducer } from './store/tournaments/tournament.reducer';
 import { TournamentEffects } from './store/tournaments/tournament.effects';
 import { provideHttpClient } from '@angular/common/http';
 import { playerReducer } from './store/players/player.reducer';
@@ -17,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideStore({
+      requestTournament: requestTournamentReducer,
       tournament: tournamentReducer,
       player: playerReducer
     }),

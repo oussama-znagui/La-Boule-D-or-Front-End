@@ -1,0 +1,41 @@
+<div class="players">
+    <div class="players-hero">
+     <h1>Joueurs</h1>
+     <div class="noc">
+         <form action="" >
+             <input type="number" placeholder="Nombre de Joueurs" >
+             <!-- @if (playersNumberError) {
+                 <p>{{playersNumberError}}</p>
+             } -->
+          </form>
+
+     </div>
+
+     <div class="players-actions">
+         <button type="button">Automatique</button>
+         <button type="button">Manuel</button>
+     </div>
+
+     <button type="button" class="add-player" >
+         Ajouter Joueur
+     </button>
+  
+    </div>
+    <div class="display-players">
+     <div *ngIf=""></div>
+     
+     <!-- @for (player of addedPlayers; track $index) {
+         
+             <app-dashboard-player-card [player]="player" [action]='"DELETE"' (deleteEvent)="deletePlayer($event)"/>
+       
+       
+         
+     } -->
+
+         
+    </div>
+    
+  
+    
+
+ </div>

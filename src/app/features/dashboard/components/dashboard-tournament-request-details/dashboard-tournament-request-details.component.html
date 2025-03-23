@@ -1,0 +1,128 @@
+<form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()">
+    <h1>Informations Générales</h1>
+    <div class="group1">
+        <div class="field">
+            <label for="">Titre du tournoi</label>
+            <input type="text" id="title" formControlName="title" >
+
+            <div *ngIf="tournamentForm.get('title')?.touched && tournamentForm.get('title')?.invalid" class="error">
+                Obligatoire min 3
+            </div>  
+            
+        </div>
+        <div class="field">
+            <label for="">Type du tournoi</label>
+            <select name="" id="type" (change)="changeTournamentType($event)"  formControlName="type">
+                <option value="NATIONAL">NATIONAL</option>
+                <option value="REGIONAL">REGIONAL</option>
+                <option value="CITY_LEVEL">CITY_LEVEL</option>
+               @if (type != "CLUBS") {
+                <option value="CLUB_LEVEL">CLUB_LEVEL</option>
+               }
+            </select>
+        </div>
+    
+       @if (tournamentType != "NATIONAL") {
+        <div class="field">
+            <label for="">
+                @if (tournamentType == "REGIONAL") {
+                    Region
+                }
+                @if (tournamentType == "CITY_LEVEL") {
+                    Ville
+                }
+                @if (tournamentType == "CLUB_LEVEL") {
+                    Club
+                }
+            </label>
+            <select name="" id=""  (change)="changeRegion($event)" >
+                    
+                @if (tournamentType == "REGIONAL") {
+                    @for (region of regions; track $index) {
+                        <option value="{{region}}">{{region}}</option>
+                    }
+                }
+                @if (tournamentType == "CITY_LEVEL") {
+                    @for (city of cities | async; track city.id) {
+                        <option value="{{city.id}}">{{city.name}}</option>
+                    }
+                }
+                @if (tournamentType == "CLUB_LEVEL") {
+                    @for (club of clubs | async; track club.id) {
+                        <option value="{{club.id}}">{{club.name}}</option>
+                    }
+                }
+            </select>
+        </div>
+       }
+       
+       
+
+        <div class="field">
+            <label for="">Mode</label>
+            <select name="" id="mode" formControlName="mode">
+                <option value="A5_A7_A9">A5_A7_A9</option>
+                <option value="A5_A5_A7">A5_A5_A7</option>
+                <option value="A3_A5_A7">A3_A5_A7</option>
+                <option value="A5_A7_A11">A5_A7_A11</option>
+                <option value="A4_A6_A8">A4_A6_A8</option>
+                <option value="A6_A7_A9">A6_A7_A9</option>
+                <option value=" A5_A6_A10"> A5_A6_A10</option>
+                <option value="A4_A5_A9">A4_A5_A9</option>
+                <option value="A11_A13_A15">A11_A13_A15</option>
+            </select>
+        </div>
+    </div>
+    <div class="group2">
+        <div class="field">
+            <label for="">Date de Debut</label>
+            <input type="date" id="startDate" formControlName="startDate">
+            <div *ngIf="tournamentForm.get('startDate')?.touched && tournamentForm.get('startDate')?.invalid" class="error">
+                <span *ngIf="tournamentForm.get('startDate')?.errors?.['required']">Date de début est obligatoire.</span>
+                <span *ngIf="tournamentForm.get('startDate')?.errors?.['invalidStartDate']">La date de début doit être aujourd'hui ou plus tard.</span>
+              </div>
+        </div>
+        <div class="field">
+            <label for="">Date de Fin</label>
+            <input type="date" id="endDate" formControlName="endDate">
+            <div *ngIf="tournamentForm.get('endDate')?.touched && tournamentForm.get('endDate')?.invalid" class="error">
+                <span *ngIf="tournamentForm.get('endDate')?.errors?.['required']">Date de fin est obligatoire.</span>
+                <span *ngIf="tournamentForm.get('endDate')?.errors?.['invalidDate']">Date de fin doit être après la date de début.</span>
+              </div>
+        </div>
+       
+        <div class="field">
+            <label for="">Format</label>
+            <select name="" id="format"formControlName="format" >
+                <option value="POINT_BASED">Poins</option>
+                <option value="KNOCKOUT">Qualification</option>
+            </select>
+        </div> 
+        <div class="field">
+            <label for="">Niveau</label>
+            <select name="" id="level"  formControlName="level">
+
+                <option value="INTERMEDIATE">INTERMEDIATE</option>
+                <option value="BEGINNER">BEGINNER</option>
+                <option value="ADVANCED">ADVANCED</option>
+                <option value="ALL">ALL</option>
+            </select>
+        </div> 
+    </div>
+    <div class="group3">
+        <div class="field">
+            <textarea name="prize" id="" placeholder="Prix et honneurs" formControlName="prize"></textarea>
+        </div>
+        <div class="field">
+            <textarea name="rules" id="" placeholder="Règles générales" formControlName="rules"></textarea>
+        </div>
+        <div class="field">
+           
+        </div>
+    </div>
+
+   
+
+
+    <button type="submit" [disabled]="tournamentForm.invalid">Submit</button>
+</form>

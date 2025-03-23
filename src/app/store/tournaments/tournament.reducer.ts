@@ -1,9 +1,12 @@
 import { createReducer, on } from "@ngrx/store";
 import { Tournament } from "../../models/tournament";
-import {loadIndividualTournamentsFailure,loadIndividualTournamentsSuccess,clearTournamentFilter,setTournamentFilter, loadClubsTournamentsFailure, loadClubsTournamentsSuccess, loadClubsTournaments, loadIndividualTournaments, loadTournamentByIdSuccess, } from "./tournament.actions";
+import {loadIndividualTournamentsFailure,loadIndividualTournamentsSuccess,clearTournamentFilter,setTournamentFilter, loadClubsTournamentsFailure, loadClubsTournamentsSuccess, loadClubsTournaments, loadIndividualTournaments, loadTournamentByIdSuccess, setRequestTournamentType, setRequestTournament, addPlayersToRequestTournament, addTeamsToRequestTournament, setRequestTournamentError, resetRequestTournament, setRequestTournamentZone, setRequestTournamentZoneData, } from "./tournament.actions";
 import { IndividualTournament } from "../../models/individual-tournament";
 import { ClubsTournament } from "../../models/clubs-tournament";
 import { TournamentFilter } from "../../models/tournament-filter";
+import { Player } from "../../models/player";
+import { Club } from "../../models/club";
+import { Region } from "../../enums/region";
 
 
 export interface TournamentState {
@@ -16,14 +19,35 @@ export interface TournamentState {
   error: any;
 }
 
+export interface RequestTournamentState{
+  tournamentType: "INDIVIDUEL" | "CLUBS" |null
+  tournament: IndividualTournament | ClubsTournament | null;
+  playersToAdd: {count: number, players: Player[]} | null;
+  teamsToAdd:{count: number, teams: Club[]}| null; 
+  error: any;
+  zone : 'N' | 'R' | 'C' | 'CL' | null
+   zoneData: Region | number | null
+}
+
 export const initialTournamentState: TournamentState = {
   individualTournaments: [],
   clubsTournaments: [],
   filter: {},
   loading: false,
   selectedTournament: null,
-  error: null
+  error: null,
+ 
 };
+
+export const initialRequestTournamentState: RequestTournamentState = {
+  tournamentType: null,
+  tournament: null  ,
+  playersToAdd: null,
+  teamsToAdd: null,
+  error: null,
+  zone: null,
+  zoneData: null
+}
 
 export const tournamentReducer = createReducer(
   initialTournamentState,
@@ -66,7 +90,7 @@ export const tournamentReducer = createReducer(
     loading: false
   })),
   
-  // Filters
+
   on(setTournamentFilter, (state, { filter }) => ({
     ...state,
     filter: {
@@ -88,4 +112,46 @@ export const tournamentReducer = createReducer(
     error: null,
   }))
   
+);
+
+
+
+export const requestTournamentReducer = createReducer(
+  initialRequestTournamentState,
+
+  on(setRequestTournamentType, (state, { tournamentType }) => ({
+    ...state,
+    tournamentType
+  })),
+
+  on(setRequestTournament, (state, { tournament }) => ({
+    ...state,
+    tournament
+  })),
+
+  on(addPlayersToRequestTournament, (state, { count, players }) => ({
+    ...state,
+    playersToAdd: { count, players }
+  })),
+
+  on(addTeamsToRequestTournament, (state, { count, teams }) => ({
+    ...state,
+    teamsToAdd: { count, teams }
+  })),
+
+  on(setRequestTournamentZone, (state, {  zone }) => ({
+    ...state,
+     zone
+  })),
+  on(setRequestTournamentZoneData, (state, { zoneData }) => ({
+    ...state,
+     zoneData
+  })),
+
+  on(setRequestTournamentError, (state, { error }) => ({
+    ...state,
+    error
+  })),
+
+  on(resetRequestTournament, () => initialRequestTournamentState)
 );

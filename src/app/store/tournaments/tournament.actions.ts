@@ -3,6 +3,9 @@ import { Tournament } from "../../models/tournament";
 import { IndividualTournament } from "../../models/individual-tournament";
 import { ClubsTournament } from "../../models/clubs-tournament";
 import { TournamentFilter } from "../../models/tournament-filter";
+import { Player } from "../../models/player";
+import { Club } from "../../models/club";
+import { Region } from "../../enums/region";
 
 
 export const loadIndividualTournaments = createAction(
@@ -60,3 +63,40 @@ export const loadIndividualTournaments = createAction(
     '[Tournament] Load Tournament By Id Failure',
     props<{ error: any }>()
   );
+  export const setRequestTournamentType = createAction(
+    '[Request Tournament] Set Tournament Type',
+    props<{ tournamentType: "INDIVIDUEL" | "CLUBS" }>()
+  );
+  
+  export const setRequestTournament = createAction(
+    '[Request Tournament] Set Tournament',
+    props<{ tournament: IndividualTournament | ClubsTournament }>()
+  );
+  export const setRequestTournamentZoneData = createAction(
+    '[Request Tournament] Set Tournament Zone Data',
+    props<{ zoneData: Region| number}>()
+  );
+  export const setRequestTournamentZone = createAction(
+    '[Request Tournament] Set Tournament Zone',
+    props<{ zone: 'N' | 'R' | 'C' | 'CL'  }>()
+  );
+  
+  export const addPlayersToRequestTournament = createAction(
+    '[Request Tournament] Add Players',
+    props<{ count: number; players: Player[] }>()
+  );
+  
+  export const addTeamsToRequestTournament = createAction(
+    '[Request Tournament] Add Teams',
+    props<{ count: number; teams: Club[] }>()
+  );
+  
+  export const setRequestTournamentError = createAction(
+    '[Request Tournament] Set Error',
+    props<{ error: any }>()
+  );
+  
+  export const resetRequestTournament = createAction(
+    '[Request Tournament] Reset'
+  );
+  

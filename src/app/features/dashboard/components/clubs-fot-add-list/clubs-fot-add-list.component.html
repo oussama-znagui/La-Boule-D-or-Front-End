@@ -7,7 +7,7 @@
     </div>
     <div class="players">
         @for (club of clubs; track club.id) {
-            <app-dashboard-club-card />
+            <app-dashboard-club-card [club]="club" [action]="'ADDtoTOURNAMENT'" (addToTournEnvent)="addToTourn($event)" (deleteFromTourEnvent)="deleteFromTour($event)"/>
         }
     </div>
 </div>

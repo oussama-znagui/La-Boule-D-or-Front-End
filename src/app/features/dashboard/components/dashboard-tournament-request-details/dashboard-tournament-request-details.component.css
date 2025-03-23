@@ -1,0 +1,59 @@
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    margin: auto;
+  }
+
+  form h1{
+    color: white;
+  }
+  
+
+.group1, .group2, .group3{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 2rem;
+   
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+input, select, textarea{
+    background-color: rgb(51, 51, 51);
+    border-radius: .4rem;
+    padding: .5rem 1rem;
+    color: white;
+    border: rgb(110, 110, 110) solid 1px;
+  
+}
+
+label{
+    color: white;
+    margin-bottom: .5rem;
+}
+
+.group3{
+    border-bottom: white solid 1px;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

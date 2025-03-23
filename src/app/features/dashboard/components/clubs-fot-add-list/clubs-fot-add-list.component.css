@@ -1,13 +1,16 @@
 .container{
     width: 70vw;
     min-height: 50vh;
+    max-height: 60vh;
+    overflow-y: scroll;
     padding: 2rem;
+    
 
 } 
 
 .players{
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto  ;
     gap: 1rem;
     margin: 1rem 0;
 }

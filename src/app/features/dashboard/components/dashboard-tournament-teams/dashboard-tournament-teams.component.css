@@ -1,0 +1,113 @@
+.teams{
+    background-color: rgb(51, 51, 51);
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+    max-height: 70vh;
+    overflow-y: scroll;
+
+}
+
+.teams-hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.teams-hero h1{
+    color: white;
+}
+
+
+.teams-actions button{
+    
+    padding: .5rem 1rem;
+    margin-left: 1rem;
+}
+
+input{
+    background-color: rgb(51, 51, 51);
+    border-radius: .4rem;
+    padding: .5rem 1rem;
+    color: white;
+    border: rgb(110, 110, 110) solid 1px;
+  
+}
+
+.add-team{
+    padding: .5rem 1rem;
+    background-color: white;
+    border-radius: .5rem;
+    border: none;
+    color: rgb(49, 49, 49);
+    font-weight: bold;
+    border: rgb(34, 34, 34) solid 1px;
+
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.display-teams{
+display: grid;
+grid-template-columns: auto auto auto;
+gap: 1rem;
+margin: 2rem auto;
+}
+.delete{
+    background: transparent;
+    color: red;
+
+}
+
+.action{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.next{
+    background-color: rgb(0, 94, 0);
+    padding: .4rem 1rem;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: .3rem;
+    cursor: pointer;
+}
+.next:hover{
+    background-color: rgb(23, 109, 23);
+  
+}

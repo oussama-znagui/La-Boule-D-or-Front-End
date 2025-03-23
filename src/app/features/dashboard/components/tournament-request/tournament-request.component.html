@@ -1,31 +1,65 @@
+<div class="page">
 
-@if (displayTeamForAdd==true) {
-    <div class="overlay">
-        <button class="close-btn" (click)="displayTeamForAdd=false">X</button>
-        <div class="modal">
-            <app-clubs-fot-add-list [clubs]="clubs | async"/>
-            <app-players-for-add-list [players]="playersForAdd | async" (e)="addPlayers($event)" (closeEvent)="displayPlayersForAdd=false"/>
-        </div>
-    </div>
-}
-@if (displayPlayersForAdd==true) {
-    <div class="overlay">
-        <button class="close-btn" (click)="displayPlayersForAdd=false">X</button>
-        <div class="modal">
-            <app-players-for-add-list [players]="playersForAdd | async" (e)="addPlayers($event)" (closeEvent)="displayPlayersForAdd=false"/>
-        </div>
-    </div>
-}
+<div class="steps">
+    @switch (step) {
+        @case (1) {
+            <div class="type">
+                <button  [ngClass]="type == 'INDIVIDUEL' ? 'active' : ''"  (click)="type = 'INDIVIDUEL'">
+                    <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="8" r="4" fill="currentColor"/>
+                        <path d="M4 20v-2a6 6 0 0 1 12 0v2H4Z" fill="currentColor"/>
+                      </svg>
+                      
+                    Tournoi Individuel
+                </button>
+                <button [class.active]="type == 'CLUBS'" (click)="type = 'CLUBS'">
+                    <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="7" r="3" fill="currentColor"/>
+                        <circle cx="17" cy="7" r="3" fill="currentColor"/>
+                        <path d="M3 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2H3Zm10 0v-2a6 6 0 0 1 6-6h2v8h-8Z" fill="currentColor"/>
+                      </svg>
+                      
+                      
+                    Tournoi Des Clubs
+                </button>
+            </div>
+            
+    
+        }
+        @case (2) {
+            <app-dashboard-tournament-request-details (nextEvent)="next()"  />
+        }
+        @case (3) {
+           @if (type == "CLUBS") {
+            <app-dashboard-tournament-teams   (nextEvent)="next()"/>
+           }@else {
+            <app-dashboard-tournament-players />
+           }
+        }
+        @case (4) {
+            @if (type == "CLUBS") {
+                <app-dashboard-tournament-players />
+               }@else {
+                
+               }
+        }
+        
+    }
+</div>
 
-@if (displayHostingClubs==true) {
-    <div class="overlay">
-        <button class="close-btn" (click)="displayHostingClubs=false">X</button>
-        <div class="modal">
-            <app-hosting-cubs-list [clubs]="hostingClubs!"  (addEvent)="addHosting($event)"/>
-        </div>
-    </div>
-}
-
+<div class="ne">
+   @if (step!=1) {
+    <button class="re" (click)="prev()">Retour</button>
+   }
+   @else {
+    <div></div>
+   }
+    @if (step != 3) {
+        <button class="next" (click)="next()">Suivant</button>
+    }
+</div>
+</div>
+<!-- 
 
 <div class="page">
     <div class="hero">
@@ -65,7 +99,7 @@
                 </div>
                 <div class="field">
                     <label for="">Type du tournoi</label>
-                    <select name="" id="type" (change)="changeTournamentType($event)" (change)="getplayers()"(change)="getClubs()" formControlName="type">
+                    <select name="" id="type" (change)="changeTournamentType($event)"  formControlName="type">
                         <option value="NATIONAL">NATIONAL</option>
                         <option value="REGIONAL">REGIONAL</option>
                         <option value="CITY_LEVEL">CITY_LEVEL</option>
@@ -146,14 +180,14 @@
                
                 <div class="field">
                     <label for="">Format</label>
-                    <select name="" id="format" (change)="changeFormat($event)" formControlName="format" >
+                    <select name="" id="format"formControlName="format" >
                         <option value="POINT_BASED">Poins</option>
                         <option value="KNOCKOUT">Qualification</option>
                     </select>
                 </div> 
                 <div class="field">
                     <label for="">Niveau</label>
-                    <select name="" id="level" (change)="changeLevel($event)" formControlName="level">
+                    <select name="" id="level"  formControlName="level">
 
                         <option value="INTERMEDIATE">INTERMEDIATE</option>
                         <option value="BEGINNER">BEGINNER</option>
@@ -174,113 +208,18 @@
                 </div>
             </div>
             @if (type == 'clubs') {
-                <div class="teams">
-                    <div class="teams-hero">
-                     <h1>Clubs</h1>
-                    <div class="noc">
-                        <form action="" >
-                            <input type="number" placeholder="Nombre de Clubs" (input)="checkTeamNumber($event)">
-                            @if (teamsNumberError) {
-                                <p>{{teamsNumberError}}</p>
-                            }
-                         </form>
-    
-                    </div>
-                  
-                     
-     
-                     <div class="teams-actions">
-                         <button type="button">Automatique</button>
-                         <button type="button">Manuel</button>
-                     </div>
-     
-                     <button type="button" class="add-team" (click)="displayTeamForAdd=true">
-                         Ajouter Club
-                     </button>
-                  
-                    </div>
-                    <div class="display-teams">
-                     @for (item of [1,2,3,4,5,6]; track $index) {
-                         <app-dashboard-player-card />
-                     }
-     
-                         
-                    </div>
-                    
-     
-                 </div>
-    
+                <app-dashboard-tournament-teams />
+
+
     
             }
-            <div class="players">
-               <div class="players-hero">
-                <h1>Joueurs</h1>
-                <div class="noc">
-                    <form action="" >
-                        <input type="number" placeholder="Nombre de Joueurs" (input)="checkPlayersNumber($event)" formControlName="numberOfPlayers">
-                        @if (playersNumberError) {
-                            <p>{{playersNumberError}}</p>
-                        }
-                     </form>
+            <app-dashboard-tournament-players />
+           <app-dashboard-tournament-hosting-club />
 
-                </div>
-
-                <div class="players-actions">
-                    <button type="button">Automatique</button>
-                    <button type="button">Manuel</button>
-                </div>
-
-                <button type="button" class="add-player" (click)="displayPlayersForAdd=true">
-                    Ajouter Joueur
-                </button>
-             
-               </div>
-               <div class="display-players">
-                <div *ngIf=""></div>
-                
-                @for (player of addedPlayers; track $index) {
-                    
-                        <app-dashboard-player-card [player]="player" [action]='"DELETE"' (deleteEvent)="deletePlayer($event)"/>
-                  
-                  
-                    
-                }
-
-                    
-               </div>
-               
-             
-               
-
-            </div>
-
-            <div class="hosting-club">
-                <div class="hosting-hero">
-                    <h1>Club d'accueil</h1>
-                   
-                    <div class="hosting-actions">
-                        <button type="button">Automatique</button>
-                        <button type="button">Manuel</button>
-                    </div>
-    
-                   @if (!hostingClub && tournamentType != "CLUB_LEVEL") {
-                    <button type="button" class="hosting" (click)="getHostingClubs();displayHostingClubs=true">
-                        Ajouter
-                    </button>
-                   }
-                 
-                   </div>
-                   <div class="display-hosting">
-                    <div *ngIf=""></div>
-                    
-                 @if (hostingClub) {
-                    <app-dashboard-club-card [club]="hostingClub" (deleteEvent)="hostingClub = undefined"[action]="'DELETE'"  />
-                 }
-                </div>
-                </div>
+           
 
 
             <button type="submit" [disabled]="tournamentForm.invalid">Submit</button>
         </form>
     </div>
-</div>
+</div> -->

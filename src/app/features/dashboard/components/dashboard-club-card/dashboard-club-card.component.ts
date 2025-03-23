@@ -9,10 +9,16 @@ import { Club } from '../../../../models/club';
 })
 export class DashboardClubCardComponent {
 
-  @Input()  action: "ADD" | "DELETE" | null = null;
+  @Input()  action: "ADD" | "DELETE" | "ADDtoTOURNAMENT" |"ADDED"|null = null;
   @Input() club!: Club;
   @Output() addEvent: EventEmitter<Club> = new EventEmitter<Club>();
   @Output() deleteEvent: EventEmitter<any> =  new EventEmitter<any>();
+  @Output() addToTournEnvent: EventEmitter<Club> = new EventEmitter<Club>();
+  @Output() deleteFromTourEnvent: EventEmitter<Club> = new EventEmitter<Club>();
+
+  Addedclubs : Club[] = []
+
+
 
 
   addHostingClub(){
@@ -26,4 +32,20 @@ export class DashboardClubCardComponent {
 
   }
 
+  addToTOurnament(){
+    this.addToTournEnvent.emit(this.club);
+    this.Addedclubs.push(this.club)
+  }
+
+
+  isAdded(c: Club): boolean{
+    return this.Addedclubs.filter(cl => cl.id == c.id).length != 0
+
+
+  }
+  deleteFromTour(){
+    this.deleteFromTourEnvent.emit(this.club);
+    this.Addedclubs = this.Addedclubs.filter(c => c.id != this.club.id)
+
+  }
 }

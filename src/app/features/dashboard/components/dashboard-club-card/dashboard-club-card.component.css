@@ -37,3 +37,26 @@
 .del:hover{
     background-color: rgb(228, 17, 17) !important;
 }
+
+.addToTour{
+    color: green;
+    border: none;
+    background: transparent;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}
+
+.added{
+    background-color: rgb(50, 141, 111) !important;
+}
+
+.deleteFromTour{
+    color: red;
+    border: none;
+    background: transparent;
+}
