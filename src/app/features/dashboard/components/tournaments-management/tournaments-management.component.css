@@ -74,3 +74,8 @@ svg{
     cursor: pointer;
     border-radius: 5px;
 }
+
+select{
+    margin: 1rem 0;
+    padding: .4rem 1rem ;
+}

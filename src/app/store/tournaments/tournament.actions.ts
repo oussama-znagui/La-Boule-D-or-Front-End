@@ -56,7 +56,7 @@ export const loadIndividualTournaments = createAction(
 
   export const loadTournamentByIdSuccess = createAction(
     '[Tournament] Load Tournament By Is Success',
-    props<{ tournament: Tournament | null }>()
+    props<{ tournament: ClubsTournament | IndividualTournament | null }>()
   );
   
   export const loadTournamentByIdFailure = createAction(

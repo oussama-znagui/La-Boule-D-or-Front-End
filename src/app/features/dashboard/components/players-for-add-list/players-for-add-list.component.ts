@@ -27,7 +27,7 @@ add(p: any){
 }
 
 addPlayers(){
-  console.log(this.playersToAdd);
+  
   
   this.e.emit(this.playersToAdd)
 }

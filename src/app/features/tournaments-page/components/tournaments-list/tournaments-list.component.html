@@ -3,18 +3,30 @@
         
     </h1>
     <div class="search">
-        <h2 class="search-title">Recherche de Tournois</h2>
-        <app-tournaments-sersh-bar />
+        <!-- <h2 class="search-title">Recherche de Tournois</h2> -->
+        <!-- <app-tournaments-sersh-bar /> -->
+         <label for="">Type : </label>
+         <select name="" id="" (change)="changeType($event)">
+          <option value="C">CLUBS</option>
+          <option value="I">INDIVIDUEL</option>
+         </select>
     </div>
 
     <div class="tournaments">
-        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
-           
-          }
 
-          @for (tournament of tournaments$ | async; track tournament.id) {
-            <app-tournament-card  [tournament]="tournament"/>
-          }
+      @if (selectedType == 'C') {
+      
+
+        @for (tournament of clubTournaments ; track tournament.id) {
+          <app-tournament-card  [tournament]="tournament"/>
+        }
+      }@else {
+        
+        @for (tournament of individuelTournaments ; track tournament.id) {
+          <app-tournament-card  [tournament]="tournament"/>
+        }
+      }
+       
 
     </div>
 </div>

@@ -55,6 +55,9 @@
     height: 32px;
     border-radius: 50%;
     overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   .player-info .avatar img {

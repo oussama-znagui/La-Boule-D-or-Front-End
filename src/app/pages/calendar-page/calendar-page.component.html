@@ -1,0 +1,125 @@
+<app-nav-bar />
+<div class="page">
+
+    <div class="hero">
+        <h1> Consultation des matchs de billard </h1>
+        <p>Suivez les résultats en direct, consultez les scores passés et restez informé des prochaines rencontres.</p>
+
+
+    </div>
+
+    <div class="select_tournament">
+        <label for="">Sélectionner un tournoi</label>
+        <select name="" id="" (change)="changeTournament($event)">
+            <option value="">-------Choisir le Tournoi-------</option>
+            @for (it of individuelTournaments; track it.id) {
+            <option value="{{it.id}}">(Individuel) {{it.title}}</option>
+        }
+        @for (ct of clubTournaments; track ct.id) {
+            <option value="{{ct.id}}">(Club) {{ct.title}}</option>
+        }
+        </select>
+    </div>
+
+    <div class="container">
+        @if (selectedtournament) {
+            @for (stage of selectedtournament.stages; track stage.id) {
+                <div class="stage">
+                    <div class="stage-hero">
+                        
+                        <h1>STAGE : {{stage.roundNumber}} | {{stage.level}}</h1>
+                        <p>{{stage.startDate}}</p>
+                    </div>
+                    @if (stage.challenges && stage.challenges[0].matches) {
+                        @for (ch of stage.challenges; track ch.id) {
+                            <div class="v">
+                              <div class="challenges">
+                                <div class="p1">
+                                    <div class="image" [ngStyle]="{'background-image': 'url(' + ch.matches[0].player1.profileImage + ')'}">
+            
+                                    </div>
+                                    <div class="p-data">
+                                        <h2>
+                                            {{ch.matches[0].player1.firstname}} {{ch.matches[0].player1.lastname}} 
+                                        </h2>
+                                    
+                                    </div>
+                                    <h1>VS</h1>
+            
+                            </div>
+                            <div class="p2">
+                                <div class="p-data">
+                                   
+                                    <h2>
+                                        {{ch.matches[0].player2.firstname}} {{ch.matches[0].player2.lastname}} 
+                                    </h2>
+                                   
+                                </div>
+                                <div class="image" [ngStyle]="{'background-image': 'url(' + ch.matches[0].player2.profileImage + ')'}">
+            
+                                </div>
+                               
+                            </div>
+                              </div>
+
+
+                                <div class="matches" >
+                             
+                                    @for (mt of ch.matches; track mt.id) {
+                                        <div class="match">
+                                            <div class="p1">
+                                                <div class="image" [ngStyle]="{'background-image': 'url(' + mt.player1.profileImage + ')'}">
+                        
+                                                </div>
+                                                <div class="p-data">
+                                                    <h2>
+                                                        {{mt.player1.firstname}} {{mt.player1.lastname}} 
+                                                    </h2>
+                                                   
+                                                </div>
+                        
+                                        </div>
+                                        <div class="winner">
+                                            <h1>Winner:</h1>
+                                           @if (mt.winner) {
+                                            
+                                            <h1>{{mt.winner}}</h1>
+                                           }@else {
+                                            <h1>Soon</h1>
+                                           }
+                                        </div>
+                                        <div class="p2">
+                                            <div class="p-data">
+                                               
+                                                <h2>
+                                                    {{mt.player2.firstname}} {{mt.player2.lastname}} 
+                                                </h2>
+                                               
+                                            </div>
+                                            <div class="image" [ngStyle]="{'background-image': 'url('    + mt.player2.profileImage + ')'}">
+                        
+                                            </div>
+                                           
+                                        </div>
+    
+                                        </div>
+                                    }
+                    
+                                </div>
+                               
+                            
+                            </div>
+                         
+                           
+                            
+                        }
+                        
+                    }
+             
+                   
+                </div>
+            }
+        }
+     
+    </div>
+</div>

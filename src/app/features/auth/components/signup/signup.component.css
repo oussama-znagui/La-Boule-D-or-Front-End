@@ -1,0 +1,62 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(49, 49, 49);
+    padding: 2rem;
+    border-radius: 2rem;
+}
+.card h1{
+    margin-bottom: 1rem;
+    color: white;
+}
+
+form{
+    width: 70%;
+display: grid;
+grid-template-columns: auto auto;
+gap: 2rem;
+}
+.grope{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+.field{
+    display: flex;
+    flex-direction: column;
+}
+input, select{
+    width: 100%;
+    padding: .4rem 1rem;
+    border-radius: .3rem;
+    border: none;
+    background-color: rgb(97, 97, 97);
+
+
+}
+label{
+    color: white;
+    font-weight: 600;
+
+}
+.sub button{
+    width: 100%;
+    background-color: rgb(80, 235, 126);
+    padding: .5rem 0;
+    border-radius: .5rem;
+    border: none;
+    
+}
+.sub{
+    /* grid-column: 2; */
+    display: block;
+}
+
+.error{
+    color: rgb(206, 0, 0);
+    font-size: .8rem;
+    margin: .4rem 0;
+}

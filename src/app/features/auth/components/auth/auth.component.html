@@ -1,0 +1,30 @@
+<div class="page">
+
+    <div class="choose">
+        <div [class.selected]="action=='S'" (click)="action='S'"> 
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 20v-1a6 6 0 0112 0v1" stroke="currentColor" stroke-width="2"/>
+                <path d="M18 8h4m-2-2v4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+       <h1> Creer Un Compte   </h1>           
+        </div>
+        <div  [class.selected]="action=='L'" (click)="action='L'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 12h12m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 4v16" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              
+       <h1> Se connecter   </h1>           
+        </div>
+    </div>
+
+    <div class="frm">
+        @if (action == "S") {
+            <app-signup />
+        }@else {
+            <app-login />
+        }
+    </div>
+
+</div>

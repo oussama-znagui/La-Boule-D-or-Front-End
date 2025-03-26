@@ -22,7 +22,19 @@
         </div>
     </div>
     <div class="tournaments">
-        <app-dashboard-tournaments-list (displayEvent)="display($event)" [clubsTournaments]="clubsTournaments" [individuelTournament]="individuelTournament"/>
+        <select name="" id="" (change)="changeT($event)">
+            <option value="C">CLUBS</option>
+            <option value="I">INDIVIDUEL</option>
+
+
+        </select>
+        @if (type == "C") {
+            <app-dashboard-tournaments-list (displayEvent)="display($event)" [clubsTournaments]="clubsTournaments" />
+
+        }@else {
+            <app-dashboard-tournaments-list (displayEvent)="display($event)" [individuelTournament]="individuelTournament"/>
+
+        }
     </div>
     
    

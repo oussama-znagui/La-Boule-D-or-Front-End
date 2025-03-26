@@ -1,14 +1,23 @@
+@if (displayHosting) {
+    <div class="overlay">
+        <button class="close-btn" (click)="displayHosting=false">X</button>
+        <div class="modal">
+          <app-hosting-cubs-list  [clubs]="clubs!" (addEvent)="addHostingClub($event)"/>
+        </div>
+    </div>
+}
 <div class="hosting-club">
     <div class="hosting-hero">
         <h1>Club d'accueil</h1>
        
         <div class="hosting-actions">
-            <button type="button">Automatique</button>
-            <button type="button">Manuel</button>
+            <button type="button" (click)="auto()">Automatique</button>
+
+            
         </div>
 
       
-        <button type="button" class="hosting" >
+        <button type="button" class="hosting" (click)="displayHosting=true" >
             Ajouter
         </button>
     
@@ -17,8 +26,15 @@
        <div class="display-hosting">
         <div *ngIf=""></div>
         
-     <!-- @if (hostingClub) {
-        <app-dashboard-club-card [club]="hostingClub" (deleteEvent)="hostingClub = undefined"[action]="'DELETE'"  />
-     } -->
+     @if (hostingClub) {
+        <app-dashboard-club-card [club]="hostingClub"  (deleteEvent)="delete($event)"/>
+     }
     </div>
+    </div>
+
+    <div class="action"> 
+        <div></div>
+       
+        <button class="next" (click)="next()" >Suivant</button>
+    
     </div>

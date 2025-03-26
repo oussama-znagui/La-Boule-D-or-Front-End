@@ -1,13 +1,17 @@
 @if (player) {
     <div class="card " [class.selected]="isAdded(player)">
         <div class="data1">
-           <img src="/assets/images/logo.png" alt="">
+           <div class="image" [ngStyle]="{'background-image': 'url(' + player.profileImage + ')'}">
+          
+           </div>
             <div class="data">
                 <h1>{{player.firstname + " " + player.lastname}}</h1>
                 @if (player.club == null) {
                     <p>Sans Club</p>
+                    
                 }@else {
                     <p>{{player.club.name}}</p>
+                    
                 }
               
             </div>

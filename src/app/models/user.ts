@@ -1,4 +1,5 @@
 import { City } from "./city";
+import { Tournament } from "./tournament";
 
 export interface User {
     id: number;
@@ -7,6 +8,9 @@ export interface User {
     email: string;
     cin: string;
     city: City;
+    profileImage: string
+    tournaments?: Tournament[]
+    
     
 
 }

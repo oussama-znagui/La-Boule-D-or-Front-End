@@ -8,14 +8,25 @@
     <nav>
         <a routerLink="">ACCUEIL</a>
         <a routerLink="/tournaments">TOURNOIS</a>
-        <a routerLink="">CALENDRIER</a>
+        <a routerLink="/caledar">CALENDRIER</a>
         <a routerLink="/players">JOUEURS</a>
-        <a routerLink="">RÈGLES</a>
-        <a routerLink="">CLUBS</a>
-        <a routerLink="">À PROPOS</a>
+        <a routerLink="/rules">RÈGLES</a>
+        <!-- <a routerLink="">CLUBS</a> -->
+        <a routerLink="/about">À PROPOS</a>
     </nav>
     <div>
-        <button class="login">LOGIN</button>
-        <button class="register">REGISTER</button>
-    </div>
+      @if (!auth) {
+        <button routerLink="/auth" class="login">LOGIN</button>
+        <button routerLink="/auth" class="register">REGISTER</button>
+      }@else {
+        @if (auth) {
+          @if (role=="[ROLE_ADMIN]") {
+            <button routerLink="/dashboard" class="login">DASHBOARD</button>
+          }
+        }@else {
+          <button routerLink="/profile" class="login">PROFILE</button>
+        }
+        
+      }
+    </div>  
 </div>

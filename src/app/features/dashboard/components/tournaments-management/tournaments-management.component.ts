@@ -22,6 +22,7 @@ export class TournamentsManagementComponent {
 
   clubsTournaments: ClubsTournament[] = []
   individuelTournament: IndividualTournament[] = []
+  type: 'C' | 'I' = 'C'
 // displayTournament: boolean = false;
 displayedTournament: IndividualTournament | ClubsTournament | null = null;
 
@@ -37,5 +38,10 @@ this.getTournaments();
   display(e: IndividualTournament | ClubsTournament){
 
     this.displayedTournament = e;
+  }
+
+  changeT(e: any){
+    this.type = e.target.value
+
   }
 }

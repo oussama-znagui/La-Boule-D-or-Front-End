@@ -14,6 +14,7 @@ import { StageRequestComponent } from "../stage-request/stage-request.component"
 export class StagesManagementComponent {
 
   selectedtournament : IndividualTournament | ClubsTournament | null = null;
+  type? : 'clubs' | 'individuel' ;
 
   iTournaments!: IndividualTournament[];
   cTournaments!: ClubsTournament[]
@@ -32,7 +33,27 @@ export class StagesManagementComponent {
   }
 
   changeTournament(e: any){
-    this.selectedtournament = (this.iTournaments.filter(t => t.id == e.target.value).concat(this.cTournaments.filter(t => t.id == e.target.value)))[0]
+
+    console.log(e.target.value);
+    console.log(this.iTournaments.filter(t => t.id == e.target.event).length);
+    console.log(this.cTournaments.filter(t => t.id == e.target.event).length);
+    
+    
+    if(this.iTournaments.filter(t => t.id == e.target.value)[0]){
+      console.log("a");
+      
+      this.selectedtournament = this.iTournaments.filter(t => t.id == e.target.value)[0]
+      this.type = "individuel"
+    }else{
+      console.log("b");
+      console.log(this.cTournaments.filter(t => t.id == e.target.value).length);
+      
+      this.selectedtournament = this.cTournaments.filter(t => t.id == e.target.value)[0]
+         this.type = "clubs"
+
+    }
+    console.log(this.selectedtournament);
+    
     
     
     

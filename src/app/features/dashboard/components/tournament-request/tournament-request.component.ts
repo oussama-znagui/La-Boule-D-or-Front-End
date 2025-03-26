@@ -7,11 +7,14 @@ import { Store } from '@ngrx/store';
 import { setRequestTournamentType } from '../../../../store/tournaments/tournament.actions';
 import { DashboardTournamentRequestDetailsComponent } from '../dashboard-tournament-request-details/dashboard-tournament-request-details.component';
 import { Club } from '../../../../models/club';
+import { DashboardTournamentHostingClubComponent } from "../dashboard-tournament-hosting-club/dashboard-tournament-hosting-club.component";
+import { requestTournamentReducer } from '../../../../store/tournaments/tournament.reducer';
+import { TournamentRequestRecupComponent } from '../tournament-request-recup/tournament-request-recup.component';
 
 
 @Component({
   selector: 'app-tournament-request',
-  imports: [ CommonModule, ReactiveFormsModule,DashboardTournamentRequestDetailsComponent, DashboardTournamentTeamsComponent, DashboardTournamentPlayersComponent],
+  imports: [TournamentRequestRecupComponent,CommonModule, ReactiveFormsModule, DashboardTournamentRequestDetailsComponent, DashboardTournamentTeamsComponent, DashboardTournamentPlayersComponent, DashboardTournamentHostingClubComponent],
   templateUrl: './tournament-request.component.html',
   styleUrl: './tournament-request.component.css'
 })
@@ -23,6 +26,7 @@ export class TournamentRequestComponent {
   
 
   constructor(private store: Store){
+   
 
   }
 

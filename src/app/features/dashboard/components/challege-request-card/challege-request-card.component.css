@@ -1,0 +1,102 @@
+.card{
+    background-color: rgb(44, 44, 44);
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 60vw;
+    max-height: 60vh;
+    overflow-y: scroll;
+
+}
+.hero{
+  
+    width: 100%;
+    text-align: left;
+    border-bottom: white solid 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+.confirmer{
+    background-color: rgb(0, 70, 0);
+    font-weight: 700;
+    border: none;
+    border-radius: .4rem;
+    padding: .4rem 1rem;
+    
+}
+.hero h1{
+    font-weight: 900;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+input{
+    padding: .3rem 1rem;
+    border-radius: .4rem;
+    border: none;
+    background-color: rgb(87, 87, 87);
+    margin: 0 1rem;
+}
+
+.players{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+ 
+}
+
+.player{
+    background-color: rgb(83, 83, 83);
+    border-radius: 1rem;
+}
+.add{
+    padding: .3rem 1rem;
+    width: 40%;
+    background-color: rgb(37, 206, 37);
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(37, 37, 37);
+    margin: 1rem 0;
+}
+
+.vs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin: 1rem auto;
+    gap: 2rem;
+}
+.p{
+    background-color: rgb(8, 8, 8);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.p h1{
+    font-size: 1rem;
+}
+
+.image{
+    width: 10rem;
+    height:10rem; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 1rem auto;
+}
+
+.delete{
+    background-color: red;
+    margin: 1rem auto;
+    border-radius: .4rem;
+    font-weight: bold;
+}

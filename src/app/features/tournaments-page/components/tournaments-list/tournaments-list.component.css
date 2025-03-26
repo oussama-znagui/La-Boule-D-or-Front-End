@@ -17,6 +17,19 @@ h1{
     width: 80%;
     
 }
+
+.search select{
+    padding: .3rem 1rem;
+    background-color: #4b4b4b;
+    color: white;
+
+}
+.search label{
+  
+    color: white;
+    margin: 0 1rem;
+
+}
 .search h2{
     color: white;
     margin-bottom: 1rem;

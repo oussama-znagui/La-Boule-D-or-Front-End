@@ -12,10 +12,12 @@ import { Observable } from 'rxjs';
 import { Tournament } from '../../models/tournament';
 import { CommonModule } from '@angular/common';
 import { TeamsListComponent } from '../../features/tournament-page/components/teams-list/teams-list.component';
+import { DashboardChallengeCardComponent } from '../../features/dashboard/components/dashboard-challenge-card/dashboard-challenge-card.component';
+import { DashboardStageCardComponent } from "../../features/dashboard/components/dashboard-stage-card/dashboard-stage-card.component";
 
 @Component({
   selector: 'app-tournament-page',
-  imports: [TournamentDetailsComponent, PlayersListComponent, NavBarComponent, CommonModule, TeamsListComponent],
+  imports: [TournamentDetailsComponent, PlayersListComponent, NavBarComponent, CommonModule, TeamsListComponent, DashboardChallengeCardComponent, DashboardStageCardComponent],
   templateUrl: './tournament-page.component.html',
   styleUrl: './tournament-page.component.css'
 })

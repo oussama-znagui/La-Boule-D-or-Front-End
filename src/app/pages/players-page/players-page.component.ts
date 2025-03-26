@@ -7,10 +7,11 @@ import { Store } from '@ngrx/store';
 import { selectAllPlayers, selectPlayerState } from '../../store/players/player.selectors';
 import { CommonModule } from '@angular/common';
 import { PlayerCardComponent } from '../../features/player-card/player-card.component';
+import { FooterComponent } from "../../shared/components/footer/footer.component";
 
 @Component({
   selector: 'app-players-page',
-  imports: [NavBarComponent, PlayersSearchBarComponent,CommonModule, PlayerCardComponent],
+  imports: [NavBarComponent, PlayersSearchBarComponent, CommonModule, PlayerCardComponent, FooterComponent],
   templateUrl: './players-page.component.html',
   styleUrl: './players-page.component.css'
 })

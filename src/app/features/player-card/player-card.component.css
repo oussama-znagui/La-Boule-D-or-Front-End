@@ -1,8 +1,26 @@
-.image{
-    background-color: white;
-    height: 35rem;
-}
+
 
 .card{
     background-color: #121213;
+  
 }
+
+.image {
+    
+    overflow: hidden;
+    height: 40vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+  
+  .image img {
+ 
+  }
+
+  .data{
+    padding: 1rem;
+    border-top: white solid 1px;
+    
+  }

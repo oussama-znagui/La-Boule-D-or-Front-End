@@ -1,0 +1,46 @@
+.page{
+    background-color: #232023;
+    min-height: 100vh;
+    padding: 2rem 0;
+
+}
+
+.choose{
+    width: 60%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.choose div{
+    background-color: #424242;
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.selected{
+    background-color: aliceblue !important;
+    color: #232023 !important;
+    border: #232023 solid 1px !important;
+}
+
+.choose svg{
+  width: 100px;
+  height: 100px;
+}
+
+.frm{
+    width: 70%;
+    margin: 2rem auto;
+    padding: 2rem;
+}

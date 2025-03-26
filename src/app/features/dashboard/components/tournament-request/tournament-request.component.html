@@ -33,13 +33,36 @@
            @if (type == "CLUBS") {
             <app-dashboard-tournament-teams   (nextEvent)="next()"/>
            }@else {
-            <app-dashboard-tournament-players />
+            <app-dashboard-tournament-players   (nextEvent)="next()"/>
            }
         }
         @case (4) {
             @if (type == "CLUBS") {
-                <app-dashboard-tournament-players />
+                <app-dashboard-tournament-players  (nextEvent)="next()"/>
+
                }@else {
+                <app-dashboard-tournament-hosting-club  (nextEvent)="next()"/>
+
+                
+               }
+        }
+        @case (5) {
+            @if (type == "CLUBS") {
+                <app-dashboard-tournament-hosting-club  (nextEvent)="next()"/>
+               }@else {
+                <app-tournament-request-recup />
+                
+                
+               }
+
+
+        }
+        @case (6) {
+            @if (type == "CLUBS") {
+                <app-tournament-request-recup />
+               }@else {
+                
+                
                 
                }
         }
@@ -54,7 +77,7 @@
    @else {
     <div></div>
    }
-    @if (step != 3) {
+    @if (step == 1) {
         <button class="next" (click)="next()">Suivant</button>
     }
 </div>

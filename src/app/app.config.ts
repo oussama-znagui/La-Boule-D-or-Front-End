@@ -7,16 +7,19 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { requestTournamentReducer, tournamentReducer } from './store/tournaments/tournament.reducer';
 import { TournamentEffects } from './store/tournaments/tournament.effects';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { playerReducer } from './store/players/player.reducer';
 import { PlayerEffects } from './store/players/player.effects';
+import { authReducer } from './features/auth/store/auth.reducer';
+import { jwtInterceptor } from './interceptors/jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([jwtInterceptor])),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideStore({
+      auth: authReducer,
       requestTournament: requestTournamentReducer,
       tournament: tournamentReducer,
       player: playerReducer

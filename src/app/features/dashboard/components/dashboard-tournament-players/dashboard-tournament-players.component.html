@@ -1,12 +1,22 @@
+
+@if (displayPlayerToAdd) {
+    <div class="overlay">
+        <button class="close-btn" (click)="displayPlayerToAdd=false">X</button>
+        <div class="modal">
+          <app-players-for-add-list  [players]="playerToAdd" (e)="addPlayers($event)" />
+        </div>
+    </div>
+}
+
 <div class="players">
     <div class="players-hero">
      <h1>Joueurs</h1>
      <div class="noc">
          <form action="" >
-             <input type="number" placeholder="Nombre de Joueurs" >
-             <!-- @if (playersNumberError) {
+             <input type="number" placeholder="Nombre de Joueurs" (input)="checkPlayersNumber($event)" >
+             @if (playersNumberError) {
                  <p>{{playersNumberError}}</p>
-             } -->
+             }
           </form>
 
      </div>
@@ -16,21 +26,22 @@
          <button type="button">Manuel</button>
      </div>
 
-     <button type="button" class="add-player" >
+     <button (click)="displayPlayerToAdd=true" type="button" class="add-player"  >
          Ajouter Joueur
      </button>
   
     </div>
     <div class="display-players">
-     <div *ngIf=""></div>
+     <!-- <div *ngIf=""></div> -->
      
-     <!-- @for (player of addedPlayers; track $index) {
+     @for (player of addedPlayers; track $index) {
          
-             <app-dashboard-player-card [player]="player" [action]='"DELETE"' (deleteEvent)="deletePlayer($event)"/>
+             <!-- <app-dashboard-player-card [player]="player" [action]='"DELETE"' (deleteEvent)="deletePlayer($event)"/> -->
+              <app-dashboard-player-card  [player]="player"/>
        
        
          
-     } -->
+     }
 
          
     </div>
@@ -39,3 +50,9 @@
     
 
  </div>
+ <div class="action"> 
+    <div></div>
+   
+    <button class="next" (click)="next()" >Suivant</button>
+
+</div>

@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="hero">
+        <h1>        CREER UN DEFIE
+</h1>
+<button class="confirmer" (click)="save()">Confirmer</button>
+    </div>
+   @if (playersToadd.length != 0) {
+    <div class="vs">
+        <div class="p">
+            <div class="image" [ngStyle]="{'background-image': 'url(' + playersToadd[0].profileImage + ')'}">         
+            </div>
+            <h1>{{playersToadd[0].firstname}} - {{playersToadd[0].firstname}} </h1>
+            <div class="delete" (click)="delete(0)">X</div>
+           
+            
+
+        </div>
+        <h1>VS</h1>
+        <div class="p">
+            @if (playersToadd.length == 2) {
+                <div class="image" [ngStyle]="{'background-image': 'url(' + playersToadd[1].profileImage + ')'}"></div>
+                    <h1>{{playersToadd[1].firstname}} - {{playersToadd[1].firstname}} </h1>
+                    <div class="delete" (click)="delete(1)">X</div>
+            }
+        </div>
+    </div>
+   }
+    <form class="data" >
+
+        <div class="field">
+            <label for="">DATE</label>
+            <input type="datetime-local" (change)="setDate($event)" >
+        </div>
+        <div class="field">
+            <label for="">RACE TO</label>
+            <input type="number"  (input)="setRaceTo($event)">
+        </div>
+        
+    </form>
+   @if (t == 'individuel') {
+    <div class="players">
+        @for (player1 of  tournament.players; track $index) {
+           <div class="player">
+            <app-dashboard-player-card [player]="player1.player"  />
+            @if (playersToadd.length < 2) {
+                <button class="add" (click)="add(player1.player)">Choisir</button>
+            }
+            
+           </div>
+        }
+
+        
+
+
+    </div>
+   }
+</div>

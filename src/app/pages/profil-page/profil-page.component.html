@@ -1,0 +1,73 @@
+
+<app-nav-bar />
+<div class="page">
+    <div class="container">
+       
+        <div class="profile-card">
+           
+            <div class="profile-image" [ngStyle]="{'background-image': 'url(' + user.profileImage + ')'}">
+  
+            </div>
+            <h1 class="profile-name">{{user.firstname}}  {{user.lastname}}</h1>
+            <p class="profile-email">{{user.email}}</p>
+            <p class="profile-location">{{user.city.name}} | {{user.city.region}}</p>
+
+           @if (!user.club) {
+            <p class="profile-location">Sans Club</p>
+           }@else {
+            <p class="profile-location">{{user.club.name}} </p>
+           }
+        </div>
+      
+        <div class="tabs">
+            <div class="tab" [class.active]="selectedTab=='S'" (click)="selectedTab='S'">Statistics</div>
+            <div class="tab active" [class.active]="selectedTab=='C'"  (click)="selectedTab='C'"  >Clubs</div>
+        </div>
+        
+      
+      @if (selectedTab=="S") {
+        <div id="stats-content" class="content" >
+            <h2 class="section-title">Statistics</h2>
+            
+            <div class="stats-grid">
+          
+                <div class="stat-card">
+                    <p class="stat-label">Total Tournament</p>
+                    <p class="stat-value">{{user.tournaments?.length}}</p>
+                </div>
+                
+               
+                <div class="stat-card">
+                    <p class="stat-label">Defies</p>
+                    <p class="stat-value">2,815</p>
+                </div>
+                
+             
+               
+            </div>
+            
+            <h2 class="section-title">Activity Overview</h2>
+            <div class="activity-box"></div>
+        </div>
+      }@else {
+
+        <div id="profile-content" class="content profile-form">
+            <h2 class="section-title">Clubs</h2>
+            
+           <div class="display-teams">
+            @for (club of clubs; track club.id) {
+                <app-club-card />
+            }
+           </div>
+        </div>
+      }
+    
+    </div>
+    
+ 
+    <div id="toast" class="toast">
+        <div class="toast-title">Profile updated</div>
+        <div class="toast-description">Your profile information has been updated successfully.</div>
+    </div>
+    
+</div>

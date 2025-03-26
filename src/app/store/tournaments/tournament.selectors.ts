@@ -17,6 +17,22 @@ export const selectRequestTournament = createSelector(
   state => state.tournament
 )
 
+export const selectRequestTournamentClubs = createSelector(
+  selectRequestTournamentState,
+  state => state.teamsToAdd!.teams
+)
+export const selectRequestTournamentPlayers = createSelector(
+  selectRequestTournamentState,
+  state => state.playersToAdd!.players
+)
+export const selectRequestTournamentClubsNumber = createSelector(
+  selectRequestTournamentState,
+  state => state.teamsToAdd!.count
+)
+export const selectRequestTournamentPlayersNumber = createSelector(
+  selectRequestTournamentState,
+  state => state.playersToAdd!.count
+)
 export const selectZoneRequestTournamentState = createSelector(
   selectRequestTournamentState,
   state => state.zone

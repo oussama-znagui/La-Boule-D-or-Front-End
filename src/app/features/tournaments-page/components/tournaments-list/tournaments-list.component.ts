@@ -4,14 +4,12 @@ import { TournamentCardComponent } from "../../../tournament-card/tournament-car
 import { Observable } from 'rxjs';
 import { Tournament } from '../../../../models/tournament';
 import { Store } from '@ngrx/store';
-import {
-  loadIndividualTournaments,
-  loadClubsTournaments,
-} from '../../../../store/tournaments/tournament.actions';
 
 
 import * as TournamentSelectors from '../../../../store/tournaments/tournament.selectors';
 import { CommonModule } from '@angular/common';
+import { ClubsTournament } from '../../../../models/clubs-tournament';
+import { IndividualTournament } from '../../../../models/individual-tournament';
 
 @Component({
   selector: 'app-tournaments-list',
@@ -21,6 +19,11 @@ import { CommonModule } from '@angular/common';
 })
 export class TournamentsListComponent {
   tournaments$!: Observable<Tournament[]>;
+
+  clubTournaments! : ClubsTournament[]
+  individuelTournaments!: IndividualTournament[];
+
+  selectedType: 'C' | 'I' = 'C'
 
 
   constructor(
@@ -32,14 +35,23 @@ export class TournamentsListComponent {
     // this.store.dispatch(loadIndividualTournaments());
     // this.store.dispatch(loadClubsTournaments());
 
-    this.showAllTournaments();
+    // this.showAllTournaments();
+
+    this.store.select(TournamentSelectors.selectIndividualTournaments).subscribe(data => this.individuelTournaments = data)
+    this.store.select(TournamentSelectors.selectClubsTournaments).subscribe(data => this.clubTournaments = data)
+
 
     console.log(this.tournaments$);
     
   }
 
   showAllTournaments(): void {
-    this.tournaments$ = this.store.select(TournamentSelectors.selectFilteredAllTournaments);
+    this.tournaments$ = this.store.select(TournamentSelectors.selectAllTournaments);
+  }
+
+  changeType(e: any){
+    this.selectedType = e.target.value
+
   }
 
 }

@@ -4,7 +4,7 @@
     <h1 class="title">Champions du Billard Marocain <br> Talents, Tournois et Passion</h1>
     </div>
     <div class="container">
-        <app-players-search-bar />
+    
         <div class="players">
             @for (player of players | async; track player.id) {
                 <app-player-card [player]="player" />
@@ -12,3 +12,5 @@
         </div>
     </div>
 </div>
+
+<app-footer />

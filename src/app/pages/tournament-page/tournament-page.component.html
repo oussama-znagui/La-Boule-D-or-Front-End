@@ -38,16 +38,13 @@
         </div>
       </div>
     </div>
-    <div class="image">
-
-    </div>
+  
     <div class="global-data">
         <div class="filter">
             <button (click)="setActiveTab('details')" [class.active]="activeTab === 'details'" >Détails</button>
             <button (click)="setActiveTab('joueurs')" [class.active]="activeTab === 'joueurs'">Joueurs</button>
             <button *ngIf="type=='clubs'" (click)="setActiveTab('equipes')" [class.active]="activeTab === 'equipes'">Équipes</button>
-            <button (click)="setActiveTab('arbitres')" [class.active]="activeTab === 'arbitres'">Arbitres</button>
-            <button (click)="setActiveTab('matches')" [class.active]="activeTab === 'matches'">Matchs</button>
+            <button (click)="setActiveTab('matches')" [class.active]="activeTab === 'matches'">Phase</button>
         </div>
         <div class="data">
             @switch (activeTab) {
@@ -65,6 +62,9 @@
                     
                 }
                 @case ("matches") {
+                    @for (ph of t.stages; track $index) {
+                       <app-dashboard-stage-card [stage]="ph" />
+                    }
                     
                 }
             }

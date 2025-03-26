@@ -1,3 +1,5 @@
+
+
 <div class="page">
     <div class="hero">
         <div class="title">
@@ -108,7 +110,7 @@
        
     </div>
     <div class="challenges">
-        <app-dashboard-challenges-list />
+        <app-dashboard-challenges-list [stage]="selectedStage!"  [tournamentID]=" selectedtournament.id" [t]="type!" />
      
     </div>
    }

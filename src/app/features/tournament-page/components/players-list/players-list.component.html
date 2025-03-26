@@ -19,8 +19,8 @@
                 <td>--</td>
                 <td>
                   <div class="player-info">
-                    <div class="avatar">
-                      <img [src]="" [alt]="">
+                    <div class="avatar" [ngStyle]="{'background-image': 'url(' + data.player.profileImage + ')'}">
+                     
                     </div>
                     <span>{{data.player.firstname}}  {{data.player.lastname}}</span>
                   </div>

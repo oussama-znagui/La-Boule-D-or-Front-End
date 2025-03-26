@@ -1,11 +1,19 @@
+@if (displayAddForm ) {
+   <div class="overlay">
+       <button class="close-btn" (click)="displayAddForm=false">X</button>
+       <div class="modal">
+         <app-challege-request-card [stage]="stage!" [t]="t" [tournamentID]="tournamentID" />
+       </div>
+   </div>
+}
 <div class="container">
    <div class="hero">
     <h1>Liste Des Defies de phase : </h1>
-    <button>Ajouter Defie</button>
+    <button  (click)="displayAddForm=true">Ajouter Defie</button>
    </div>
    <div class="challenges">
-      @for (item of [1,2,3,4,5]; track $index) {
-         <app-dashboard-challenge-card />
+      @for (ch of stage.challenges; track $index) {
+         <!-- <app-dashboard-challenge-card [challenge]="ch" /> -->
       }
    </div>
 
